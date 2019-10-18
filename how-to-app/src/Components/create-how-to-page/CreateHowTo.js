@@ -16,12 +16,9 @@ const initialValue = {
 };
 
 const CreateHowTo = props => {
-    const [newHowTo, setNewHowTo ] = useState(initialValue); //State for the New how-to object
+    const [ newHowTo, setNewHowTo ] = useState(initialValue); //State for the New how-to object
 
     let [ steps, setSteps ] = useState([1]); //variable to add more steps
-
-
-    console.log(newHowTo)
 
     //Handles the Change that is made the values
     const HandleChange = e => {
