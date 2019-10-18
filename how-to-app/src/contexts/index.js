@@ -6,11 +6,11 @@ export const UserContext = createContext()
 export const UserProvider = props => {
   const [user, setUser] = useState({})
 
-  if (localStorage.token) {
-    axiosWithAuth('get', `https://bw-how-to.heorkuapp.com/users/${localStorage.id}`)
-      .then(res => setUser(res.data))
-      .catch(err => console.log('contexts: index: UserProvider: GET:', err))
-  }
+  // if (localStorage.token) {
+  //   axiosWithAuth('get', `https://bw-how-to.heorkuapp.com/users/${localStorage.id}`)
+  //     .then(res => setUser(res.data))
+  //     .catch(err => console.log('contexts: index: UserProvider: GET:', err))
+  // }
   return (
     <UserContext.Provider value={[user, setUser]}>{props.children}</UserContext.Provider>
   )
