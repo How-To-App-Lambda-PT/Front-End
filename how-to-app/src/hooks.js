@@ -7,7 +7,7 @@ export const useFormInput = initialValues => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
 
-  resetForm = () => setValues(initialValues)
+  const resetForm = () => setValues(initialValues)
 
   return [values, changeHandler, resetForm]
 }

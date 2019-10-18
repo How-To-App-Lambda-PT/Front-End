@@ -9,18 +9,23 @@ const Login = props => {
     username: '',
     password: ''
   }
-  const [values, changeHandler] = useFormInput()
+  const [values, changeHandler] = useFormInput(initialValues)
 
   const submitHandler = () => {
     axios
       .post(`https://bw-how-to.herokuapp.com/login`, values)
-      .then()
+      .then(res => {
+        console.log(res.data)
+        localStorage.setItem('token', res.data.token)
+        props.history.push('/user')
+      })
+      .catch(err => console.log('Login: POST:', err))
   }
 
   return (
     <Segment>
       <Segment>
-        <Form>
+        <Form onSubmit={submitHandler}>
           <Form.Input
             fluid
             label='Username'
@@ -43,3 +48,5 @@ const Login = props => {
     </Segment>
   )
 }
+
+export default Login
