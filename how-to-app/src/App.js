@@ -1,6 +1,9 @@
 import React from "react";
 import "./App.css";
-import Route from "react-router-dom";
+
+import CreateAccount from './Components/CreateAccount.js';
+
+import { Route } from "react-router-dom";
 
 function App() {
   return (
