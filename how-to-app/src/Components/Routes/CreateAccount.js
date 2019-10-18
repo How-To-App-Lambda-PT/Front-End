@@ -11,7 +11,7 @@ const CreateAccount = props => {
   console.log(props)
 
   return (
-    <form>
+    <form className="createAccount">
       <input type='text' />
     </form>
   );
