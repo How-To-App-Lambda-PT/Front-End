@@ -9,7 +9,7 @@ function App() {
 
       <Route exact path="/" component={HomePage} />
 
-      <Route path="/account/create" render={() => <CreateAccount />} />
+      <Route path="/createAccount" render={() => <CreateAccount />} />
 
       <Route path="/signIn" render={() => <SignIn />} />
 
@@ -17,11 +17,11 @@ function App() {
 
       <Route path="/createHowto" render={() => <CreateHowTo />} />
 
-      <Route path="results" render={() => <SearchResults />} />
+      <Route path="/results" render={() => <SearchResults />} />
 
-      <Route path="guide" render={() => <HowToGuide />} />
+      <Route path="/guide" render={() => <HowToGuide />} />
 
-      <Route path="newsfeed" render={() => <NewsFeed />} />
+      <Route path="/dashboard" render={() => <Dashboard />} />
     </div>
   );
 }
