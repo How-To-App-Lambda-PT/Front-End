@@ -1,8 +1,11 @@
 import React from "react";
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route }  from "react-router-dom";
+
+//Component Imports
+import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
+import PrivateRoute from "./PrivateRoute"
 import Login from './Components/Login';
-import PrivateRoute from "./PrivateRoute";
 import User from './Components/User';
 
 function App() {
@@ -11,11 +14,9 @@ function App() {
       <h1> How To </h1>
       <Route exact path='/' component={Login} />
 
-      <PrivateRoute exact path="/user" component={User} />
-{/* 
-      <Route exact path="/" component={HomePage} />
+      {/* <Route exact path="/" component={HomePage} />
 
-      <Route path="/account/create" render={() => <CreateAccount />} />
+      <Route path="/createAccount" render={() => <CreateAccount />} />
 
       <Route path="/signIn" render={() => <SignIn />} />
 
@@ -27,7 +28,12 @@ function App() {
 
       <Route path="/guide" render={() => <HowToGuide />} />
 
-      <Route path="/newsfeed" render={() => <NewsFeed />} /> */}
+      <Route path="newsfeed" render={() => <NewsFeed />} /> 
+
+  <Route path="/dashboard" render={() => <Dashboard />} /> */}
+
+      <PrivateRoute path="/guides" component={CreateHowTo} />
+      <PrivateRoute path="/user" component={User} />
     </div>
   );
 }
