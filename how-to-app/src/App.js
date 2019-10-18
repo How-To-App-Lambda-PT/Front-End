@@ -4,12 +4,15 @@ import { Route }  from "react-router-dom";
 
 //Component Imports
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
-import PrivateRoute from "./Components/Routes/PrivateRoute"
+import PrivateRoute from "./PrivateRoute"
+import Login from './Components/Login';
+import User from './Components/User';
 
 function App() {
   return (
     <div className="App">
       <h1> How To </h1>
+      <Route exact path='/' component={Login} />
 
       {/* <Route exact path="/" component={HomePage} />
 
@@ -30,6 +33,7 @@ function App() {
   <Route path="/dashboard" render={() => <Dashboard />} /> */}
 
       <PrivateRoute path="/guides" component={CreateHowTo} />
+      <PrivateRoute path="/user" component={User} />
     </div>
   );
 }

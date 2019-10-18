@@ -1,9 +1,10 @@
 //basic library/framework imports
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
 //component imports
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { UserContext } from '../../contexts/index';
 
 //initial value for the NEW how to object
 const initialValue = {
@@ -16,7 +17,8 @@ const initialValue = {
 };
 
 const CreateHowTo = props => {
-    const [ newHowTo, setNewHowTo ] = useState(initialValue); //State for the New how-to object
+    const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
+    const [user] = useContext(UserContext)//Makes user context store available to validate {type: 'creator'}
 
     let [ steps, setSteps ] = useState([1]); //variable to add more steps
 
@@ -38,7 +40,7 @@ const CreateHowTo = props => {
         e.preventDefault();
 
         axiosWithAuth( 'post', '/guides', newHowTo )
-            .then(res => props.history.push(`guides/${newHowTo.user_id}`))
+            .then(res => props.history.push(`/guides/${newHowTo.user_id}`))
             .catch(err => console.log(err) )
 
     };
@@ -62,7 +64,7 @@ const CreateHowTo = props => {
         })
     };
 
-    if(props.type==='creator'){
+    if(user.type==='creator'){
         //the form where data will be inputed
         return(
             <form onSubmit={HandleSubmit}>
