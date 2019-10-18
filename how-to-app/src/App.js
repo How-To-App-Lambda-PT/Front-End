@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
-import Route from "react-router-dom";
+import { Route }  from "react-router-dom";
+
+//Component Imports
+import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
+import PrivateRoute from "./Components/Routes/PrivateRoute"
 
 function App() {
   return (
     <div className="App">
       <h1> How To </h1>
 
-      <Route exact path="/" component={HomePage} />
+      {/* <Route exact path="/" component={HomePage} />
 
       <Route path="/createAccount" render={() => <CreateAccount />} />
 
@@ -21,7 +25,11 @@ function App() {
 
       <Route path="/guide" render={() => <HowToGuide />} />
 
-      <Route path="/dashboard" render={() => <Dashboard />} />
+      <Route path="newsfeed" render={() => <NewsFeed />} /> 
+
+  <Route path="/dashboard" render={() => <Dashboard />} /> */}
+
+      <PrivateRoute path="/guides" component={CreateHowTo} />
     </div>
   );
 }
