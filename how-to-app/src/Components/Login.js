@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Form, Segment } from 'semantic-ui-react'
 import axios from 'axios'
-import { useFormInput } from '../hooks';
+import { useFormInput } from '../utils/hooks';
 import { UserContext } from '../contexts/index';
 
 const Login = props => {
