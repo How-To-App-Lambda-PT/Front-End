@@ -45,6 +45,7 @@ const SignIn = props => {
             name='password'
             placeholder='Password'
             values={values.password}
+            type='password'
             onChange={changeHandler}
           />
           <Form.Button>Log In</Form.Button>

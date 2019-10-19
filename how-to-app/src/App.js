@@ -29,9 +29,7 @@ function App() {
 
       <Route path="/guide" render={() => <HowToGuide />} />
 
-      <Route path="newsfeed" render={() => <NewsFeed />} /> 
-
-  <Route path="/dashboard" render={() => <Dashboard />} /> */}
+      <Route path="newsfeed" render={() => <NewsFeed />} /> */}
       <GuidesProvider>
         <PrivateRoute path="/guides" component={CreateHowTo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
