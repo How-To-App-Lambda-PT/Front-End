@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../contexts/index';
+import HowToCardList from './HowToCardList';
 
 const User = () => {
 
@@ -8,7 +9,10 @@ const User = () => {
   console.log('User component:', user)
 
   return (
-    <div>User</div>
+    <>
+      <div>User</div>
+      <HowToCardList />
+    </>
   )
 }
 
