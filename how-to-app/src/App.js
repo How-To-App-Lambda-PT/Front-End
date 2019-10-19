@@ -6,7 +6,7 @@ import { Route }  from "react-router-dom";
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
 import PrivateRoute from "./PrivateRoute"
 import Login from './Components/Login';
-import User from './Components/User';
+import Dashboard from './Components/Dashboard';
 import { GuidesProvider } from "./contexts";
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
   <Route path="/dashboard" render={() => <Dashboard />} /> */}
       <GuidesProvider>
         <PrivateRoute path="/guides" component={CreateHowTo} />
-        <PrivateRoute path="/user" component={User} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
       </GuidesProvider>
     </div>
   );
