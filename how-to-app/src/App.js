@@ -5,7 +5,7 @@ import { Route }  from "react-router-dom";
 //Component Imports
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
 import PrivateRoute from "./PrivateRoute"
-import Login from './Components/Login';
+import SignIn from './Components/SignIn';
 import Dashboard from './Components/Dashboard';
 import { GuidesProvider } from "./contexts";
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <h1> How To </h1>
-      <Route exact path='/' component={Login} />
+      <Route exact path='/' component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
 
