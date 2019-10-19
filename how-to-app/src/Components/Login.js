@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/index';
 
 const Login = props => {
 
-  const [user, setUsers] = useContext(UserContext)
+  const [_, setUsers] = useContext(UserContext)
 
   const initialValues = {
     username: '',
