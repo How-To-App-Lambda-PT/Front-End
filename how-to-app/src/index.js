@@ -4,16 +4,14 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
-import { UserProvider, GuidesProvider } from './contexts'
+import { UserProvider } from './contexts'
 
 
 ReactDOM.render(
   <UserProvider>
-    <GuidesProvider>
-      <Router>
-        <App />
-      </Router>
-    </GuidesProvider>
+    <Router>
+      <App />
+    </Router>
   </UserProvider>,
     document.getElementById("root")
   );

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { Form, Segment } from 'semantic-ui-react'
 import axios from 'axios'
-import { useFormInput } from '../hooks';
+import { useFormInput } from '../utils/hooks';
 import { UserContext } from '../contexts/index';
 
-const Login = props => {
+const SignIn = props => {
 
-  const [user, setUsers] = useContext(UserContext)
+  const [_, setUsers] = useContext(UserContext)
 
   const initialValues = {
     username: '',
@@ -22,7 +22,7 @@ const Login = props => {
         localStorage.setItem('token', res.data.token)
         localStorage.setItem('id', res.data.id)
         setUsers(res.data)
-        props.history.push('/user')
+        props.history.push('/dashboard')
       })
       .catch(err => console.log('Login: POST:', err))
   }
@@ -54,4 +54,4 @@ const Login = props => {
   )
 }
 
-export default Login
+export default SignIn
