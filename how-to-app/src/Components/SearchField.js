@@ -53,25 +53,29 @@ const SearchField = () => {
 
   return (
     <Segment>
-      <Form
-        onSubmit={searchHandler}
-      >
-        <Form.Input
-          fluid
-          label='Search'
-          name='searchValue'
-          placeholder='Search'
-          value={values.searchValue}
-          onChange={changeHandler}
-        />
-        <Form.Button>Search Guides</Form.Button>
-      </Form>
-      <Form
-        onSubmit={resetHandler}
-      >
-        {filterList}
-        <Form.Button>Reset Search</Form.Button>
-      </Form>
+      <Segment>
+        <Form
+          onSubmit={searchHandler}
+        >
+          <Form.Input
+            fluid
+            label='Search'
+            name='searchValue'
+            placeholder='Search'
+            value={values.searchValue}
+            onChange={changeHandler}
+          />
+          <Form.Button>Search Guides</Form.Button>
+        </Form>
+      </Segment>
+      <Segment>
+        <Form
+          onSubmit={resetHandler}
+        >
+          {filterList}
+          <Form.Button>Reset Search</Form.Button>
+        </Form>
+      </Segment>
     </Segment>
   )
 }
