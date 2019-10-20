@@ -13,6 +13,7 @@ const HowToCardList = () => {
         : guides.map(guide => {
           return (
             <HowToCard
+              key={guide.id}
               title={guide.title}
               steps={guide.description}
             />
