@@ -12,7 +12,7 @@ import { GuidesProvider } from "./contexts";
 function App() {
   return (
     <div className="App">
-      <h1> How To </h1>
+      <h1> </h1>
       <Route exact path="/" component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
