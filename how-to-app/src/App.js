@@ -9,6 +9,7 @@ import SignIn from "./Components/Sign-In-Page/SignIn";
 import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
+import HowToGuide from './Components/HowToGuide/HowToGuide';
 
 function App() {
   return (
@@ -20,20 +21,14 @@ function App() {
 
       <Route path="/createAccount" render={() => <CreateAccount />} />
 
-      <Route path="/signIn" render={() => <SignIn />} />
-
       <Route path="/myAccount" render={() => <MyAccount />} />
-
-      <Route path="/createHowto" render={() => <CreateHowTo />} />
-
-      <Route path="/guide" render={() => <HowToGuide />} />
 
       <Route path="newsfeed" render={() => <NewsFeed />} /> */}
       <GuidesProvider>
-        <PrivateRoute path="/guides" component={CreateHowTo} />
+        <PrivateRoute path="/guides/create" component={CreateHowTo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/searchresults" component={SearchResults} />
-        {/* <PrivateRoute path="/guide/:id" component={How} /> */}
+        <PrivateRoute path="/guides/:id" component={HowToGuide} />
       </GuidesProvider>
     </div>
   );

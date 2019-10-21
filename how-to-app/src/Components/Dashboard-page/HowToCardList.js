@@ -11,7 +11,12 @@ const HowToCardList = () => {
       <div>Loading ...</div>
     ) : (
       guides.map(guide => {
-        return <HowToCard title={guide.title} steps={guide.description} />;
+        return <HowToCard
+          key={guide.id}
+          title={guide.title}
+          steps={guide.description}
+          id={guide.id}
+        />;        
       })
     );
   };
