@@ -32,9 +32,9 @@ const SignIn = props => {
       <Form onSubmit={submitHandler}>
         <Form.Input
           fluid
-          label="Email"
-          name="email"
-          values={values.email}
+          label="Username"
+          name="username"
+          values={values.username}
           onChange={changeHandler}
         />
         <Form.Input
