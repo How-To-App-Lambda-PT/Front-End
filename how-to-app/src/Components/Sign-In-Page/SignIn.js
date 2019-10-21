@@ -8,7 +8,7 @@ import { Formik, Form, Field } from "formik";
 import Error from "./Error";
 
 const SignIn = props => {
-  const [user, setUsers] = useContext(UserContext);
+  const [_, setUsers] = useContext(UserContext);
 
   const initialValues = { username: "", password: "" };
   const [values, changeHandler] = useFormInput(initialValues);
@@ -30,21 +30,21 @@ const SignIn = props => {
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={({ setStatus, setSubmitting, resetForm }) => {
+        onSubmit={(values, { setStatus, setSubmitting, resetForm }) => {
           axios
             .post(`https://bw-how-to.herokuapp.com/login`, values)
             .then(res => {
               console.log(res.data);
-              console.log(values);
+              console.log("POST", values);
               localStorage.setItem("token", res.data.token);
               localStorage.setItem("id", res.data.id);
-              setUsers([...user, values]);
-              setStatus(res.data);
+              // setUsers([...user, values]);
+              setUsers(res.data);
               setSubmitting(false);
               resetForm();
               props.history.push("/dashboard");
             })
-            .catch(err => console.log("Login: POST:", err));
+            .catch(err => console.log("Login: POST:", values, err));
         }}
       >
         {({
@@ -96,3 +96,57 @@ const SignIn = props => {
 };
 
 export default SignIn;
+
+// import React, { useContext } from "react";
+// import { Form, Segment } from "semantic-ui-react";
+// import axios from "axios";
+// import { useFormInput } from "../../utils/hooks";
+// import { UserContext } from "../../contexts/index";
+
+// const SignIn = props => {
+//   const [_, setUsers] = useContext(UserContext);
+
+//   const initialValues = {
+//     username: "",
+//     password: ""
+//   };
+//   const [values, changeHandler] = useFormInput(initialValues);
+
+//   const submitHandler = () => {
+//     axios
+//       .post(`https://bw-how-to.herokuapp.com/login`, values)
+//       .then(res => {
+//         console.log(res.data);
+//         localStorage.setItem("token", res.data.token);
+//         localStorage.setItem("id", res.data.id);
+//         setUsers(res.data);
+//         props.history.push("/dashboard");
+//       })
+//       .catch(err => console.log("Login: POST:", err));
+//   };
+
+//   return (
+//     <Segment>
+//       <h1>hello</h1>
+//       <Form onSubmit={submitHandler}>
+//         <Form.Input
+//           fluid
+//           label="username"
+//           name="username"
+//           values={values.username}
+//           onChange={changeHandler}
+//         />
+//         <Form.Input
+//           fluid
+//           label="Password"
+//           name="password"
+//           values={values.password}
+//           onChange={changeHandler}
+//         />
+//         <Form.Button>Log In</Form.Button>
+//       </Form>
+//     </Segment>
+//   );
+// };
+
+// export default SignIn;
