@@ -1,19 +1,19 @@
 import React from "react";
 import "./App.css";
-import { Route }  from "react-router-dom";
+import { Route } from "react-router-dom";
 
 //Component Imports
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
-import PrivateRoute from "./PrivateRoute"
-import SignIn from './Components/SignIn';
-import Dashboard from './Components/Dashboard';
+import PrivateRoute from "./PrivateRoute";
+import SignIn from "./Components/Sign-In-Page/SignIn";
+import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
 
 function App() {
   return (
     <div className="App">
       <h1> How To </h1>
-      <Route exact path='/' component={SignIn} />
+      <Route exact path="/" component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
 
