@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Segment } from "semantic-ui-react";
 import axios from "axios";
-import { useFormInput } from "../../utils/hooks";
 import { UserContext } from "../../contexts/index";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
@@ -11,7 +10,7 @@ const SignIn = props => {
   const [_, setUsers] = useContext(UserContext);
 
   const initialValues = { username: "", password: "" };
-  const [values, changeHandler] = useFormInput(initialValues);
+  // const [values, changeHandler] = useFormInput(initialValues);
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
