@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import SignIn from "./Components/Sign-In-Page/SignIn";
 import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
+import SearchResults from './Components/SearchResults/SearchResults';
 
 function App() {
   return (
@@ -25,16 +26,13 @@ function App() {
 
       <Route path="/createHowto" render={() => <CreateHowTo />} />
 
-      <Route path="/results" render={() => <SearchResults />} />
-
       <Route path="/guide" render={() => <HowToGuide />} />
 
-      <Route path="newsfeed" render={() => <NewsFeed />} /> 
-
-  <Route path="/dashboard" render={() => <Dashboard />} /> */}
+      <Route path="newsfeed" render={() => <NewsFeed />} /> */}
       <GuidesProvider>
         <PrivateRoute path="/guides" component={CreateHowTo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/searchresults" component={SearchResults} />
       </GuidesProvider>
     </div>
   );
