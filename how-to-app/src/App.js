@@ -10,11 +10,12 @@ import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
   return (
     <div className="App">
-      <h1> How To </h1>
+      <Link to='/'> How To </Link>
       <Route exact path="/" component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
