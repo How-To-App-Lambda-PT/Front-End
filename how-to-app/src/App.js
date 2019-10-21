@@ -33,6 +33,7 @@ function App() {
         <PrivateRoute path="/guides" component={CreateHowTo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/searchresults" component={SearchResults} />
+        {/* <PrivateRoute path="/guide/:id" component={How} /> */}
       </GuidesProvider>
     </div>
   );
