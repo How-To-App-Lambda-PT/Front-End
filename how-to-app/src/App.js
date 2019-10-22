@@ -29,7 +29,11 @@ import SignIn from "./Components/Sign-In-Page/SignIn";
 import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
+<<<<<<< HEAD
 >>>>>>> eb656dbe27896b962e8b1be68ba98a01de5a590d
+=======
+import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
+>>>>>>> 9f9c0145000769b1a2fd001ae309e771322a8c5e
 
 function App() {
   return (
@@ -51,9 +55,10 @@ function App() {
 
       <Route path="newsfeed" render={() => <NewsFeed />} /> */}
       <GuidesProvider>
-        <PrivateRoute path="/guides" component={CreateHowTo} />
+        <PrivateRoute path="/createpost" component={CreateHowTo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/searchresults" component={SearchResults} />
+        <PrivateRoute path='/userpagenewsfeed' component={UserPageNewsfeed} />
       </GuidesProvider>
     </div>
   );
