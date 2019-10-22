@@ -9,6 +9,8 @@ const Dashboard = () => {
     <>
       <div>User Information</div>
       <Link to='/searchresults'>Search How To's</Link>
+      <Link to='/createpost'>Create Post</Link>
+      <Link to='/UserpageNewsfeed'>User Page Newsfeed</Link>
     </>
   );
 };

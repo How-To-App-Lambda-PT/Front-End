@@ -12,11 +12,12 @@ import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
 
+import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
 
 function App() {
   return (
     <div className="App">
-      <Link to='/'> How To </Link>
+      <h1> </h1>
       <Route exact path="/" component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
@@ -27,10 +28,10 @@ function App() {
 
       <Route path="newsfeed" render={() => <NewsFeed />} /> */}
       <GuidesProvider>
-        <PrivateRoute path="/guides/create" component={CreateHowTo} />
+        <PrivateRoute path="/createpost" component={CreateHowTo} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/searchresults" component={SearchResults} />
-        <PrivateRoute path="/guides/:id" component={HowToGuide} />
+        <PrivateRoute path='/userpagenewsfeed' component={UserPageNewsfeed} />
       </GuidesProvider>
     </div>
   );

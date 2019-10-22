@@ -5,6 +5,7 @@ import { UserContext } from "../../contexts/index";
 import * as Yup from "yup";
 import { Formik, Form, Field } from "formik";
 import Error from "./Error";
+import { Container, Col, FormGroup, Label, Button } from "reactstrap";
 
 const SignIn = props => {
   const [_, setUsers] = useContext(UserContext);
@@ -24,128 +25,97 @@ const SignIn = props => {
   // const submitHandler = ;
 
   return (
-    <Segment>
-      <h1>Sign In</h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, { setStatus, setSubmitting, resetForm }) => {
-          axios
-            .post(`https://bw-how-to.herokuapp.com/login`, values)
-            .then(res => {
-              console.log(res.data);
-              console.log("POST", values);
-              localStorage.setItem("token", res.data.token);
-              localStorage.setItem("id", res.data.id);
-              // setUsers([...user, values]);
-              setUsers(res.data);
-              setSubmitting(false);
-              resetForm();
-              props.history.push("/dashboard");
-            })
-            .catch(err => console.log("Login: POST:", values, err));
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleSubmit,
-          handleChange,
-          isSubmitting
-        }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>
-              Username
-              <Field
-                type="text"
-                onBlur={handleBlur}
-                name="username"
-                values={values.username}
-                onChange={handleChange}
-                className={
-                  touched.username && errors.username ? "has-error" : null
-                }
-              />
-              <Error touched={touched.username} message={errors.username} />
-            </label>
-            <label>
-              Password
-              <Field
-                type="password"
-                onBlur={handleBlur}
-                name="password"
-                values={values.password}
-                onChange={handleChange}
-                className={
-                  touched.password && errors.password ? "has-error" : null
-                }
-              />
-              <Error touched={touched.password} message={errors.password} />
-            </label>
-            <button type="submit" disabled={isSubmitting}>
-              Log In
-            </button>
-          </Form>
-        )}
-      </Formik>
-    </Segment>
+    <Container className="super-cont">
+      <header className="login-header">
+        <h4 className="login-logo">How-To</h4>
+      </header>
+      <Container className="login-cont">
+        <div className="sub-cont">
+          <h1 className="login-text">Sign In</h1>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, { setStatus, setSubmitting, resetForm }) => {
+              axios
+                .post(`https://bw-how-to.herokuapp.com/login`, values)
+                .then(res => {
+                  console.log(res.data);
+                  console.log("POST", values);
+                  localStorage.setItem("token", res.data.token);
+                  localStorage.setItem("id", res.data.id);
+                  // setUsers([...user, values]);
+                  setUsers(res.data);
+                  setSubmitting(false);
+                  resetForm();
+                  props.history.push("/dashboard");
+                })
+                .catch(err => console.log("Login: POST:", values, err));
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleBlur,
+              handleSubmit,
+              handleChange,
+              isSubmitting
+            }) => (
+              <Form className="login-form" onSubmit={handleSubmit}>
+                <Col>
+                  <FormGroup className="user-group">
+                    <Label className="user-label" htmlFor="username">
+                      Username
+                    </Label>
+                    <Field
+                      type="text"
+                      onBlur={handleBlur}
+                      name="username"
+                      values={values.username}
+                      onChange={handleChange}
+                      className="login-field"
+                    />
+                    <Error
+                      touched={touched.username}
+                      message={errors.username}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col>
+                  <FormGroup className="pass-group">
+                    <Label className="user-label" htmlFor="password">
+                      Password
+                    </Label>
+                    <Field
+                      type="password"
+                      onBlur={handleBlur}
+                      name="password"
+                      values={values.password}
+                      onChange={handleChange}
+                      className="login-field"
+                    />
+                    <Error
+                      touched={touched.password}
+                      message={errors.password}
+                    />
+                  </FormGroup>
+                </Col>
+                <div className="button-div">
+                  <Button
+                    className="login-button"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </Container>
+    </Container>
   );
 };
 
 export default SignIn;
-
-// import React, { useContext } from "react";
-// import { Form, Segment } from "semantic-ui-react";
-// import axios from "axios";
-// import { useFormInput } from "../../utils/hooks";
-// import { UserContext } from "../../contexts/index";
-
-// const SignIn = props => {
-//   const [_, setUsers] = useContext(UserContext);
-
-//   const initialValues = {
-//     username: "",
-//     password: ""
-//   };
-//   const [values, changeHandler] = useFormInput(initialValues);
-
-//   const submitHandler = () => {
-//     axios
-//       .post(`https://bw-how-to.herokuapp.com/login`, values)
-//       .then(res => {
-//         console.log(res.data);
-//         localStorage.setItem("token", res.data.token);
-//         localStorage.setItem("id", res.data.id);
-//         setUsers(res.data);
-//         props.history.push("/dashboard");
-//       })
-//       .catch(err => console.log("Login: POST:", err));
-//   };
-
-//   return (
-//     <Segment>
-//       <h1>hello</h1>
-//       <Form onSubmit={submitHandler}>
-//         <Form.Input
-//           fluid
-//           label="username"
-//           name="username"
-//           values={values.username}
-//           onChange={changeHandler}
-//         />
-//         <Form.Input
-//           fluid
-//           label="Password"
-//           name="password"
-//           values={values.password}
-//           onChange={changeHandler}
-//         />
-//         <Form.Button>Log In</Form.Button>
-//       </Form>
-//     </Segment>
-//   );
-// };
-
-// export default SignIn;
