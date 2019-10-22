@@ -24,7 +24,7 @@ const HowToGuide = () => {
 
   const [guide, setGuide] = useState()
 
-  useEffect(() => { 
+  useEffect(() => {
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides/${id}`)
       .then(res => setGuide(res.data[0]))
       .catch(err => console.log('HowToGuide: useEffect: GET:', err))
@@ -50,6 +50,7 @@ const HowToGuide = () => {
     const titleNumber = step.split('_')[1]
     return (
       <Card
+        raised
         key={titleNumber}
         header={`Step ${titleNumber}`}
         description={guide[`${step}`]}
@@ -58,7 +59,7 @@ const HowToGuide = () => {
   })
 
   const videoLink = guide.link
-  
+
   const videoId = videoLink.split('=')[1]
 
 
@@ -74,6 +75,7 @@ const HowToGuide = () => {
       </Container>
       <Container>
         <Embed
+          raised
           style={style.last}
           id={videoId}
           source='youtube'
