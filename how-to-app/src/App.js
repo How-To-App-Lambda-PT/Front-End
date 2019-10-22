@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import CreateAccount from './Components/CreateAccount.js';
 
@@ -18,12 +19,23 @@ import PrivateRoute from "./PrivateRoute"
 import Login from './Components/Login';
 import User from './Components/User';
 >>>>>>> a79dbeedaf91923e83389e6ad763c9ade9c07ab9
+=======
+import { Route } from "react-router-dom";
+
+//Component Imports
+import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
+import PrivateRoute from "./PrivateRoute";
+import SignIn from "./Components/Sign-In-Page/SignIn";
+import Dashboard from "./Components/Dashboard-page/Dashboard";
+import { GuidesProvider } from "./contexts";
+import SearchResults from './Components/SearchResults/SearchResults';
+>>>>>>> eb656dbe27896b962e8b1be68ba98a01de5a590d
 
 function App() {
   return (
     <div className="App">
-      <h1> How To </h1>
-      <Route exact path='/' component={Login} />
+      <h1> </h1>
+      <Route exact path="/" component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
 
@@ -35,16 +47,14 @@ function App() {
 
       <Route path="/createHowto" render={() => <CreateHowTo />} />
 
-      <Route path="/results" render={() => <SearchResults />} />
-
       <Route path="/guide" render={() => <HowToGuide />} />
 
-      <Route path="newsfeed" render={() => <NewsFeed />} /> 
-
-  <Route path="/dashboard" render={() => <Dashboard />} /> */}
-
-      <PrivateRoute path="/guides" component={CreateHowTo} />
-      <PrivateRoute path="/user" component={User} />
+      <Route path="newsfeed" render={() => <NewsFeed />} /> */}
+      <GuidesProvider>
+        <PrivateRoute path="/guides" component={CreateHowTo} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/searchresults" component={SearchResults} />
+      </GuidesProvider>
     </div>
   );
 }
