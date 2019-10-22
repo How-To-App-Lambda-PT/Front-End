@@ -1,6 +1,7 @@
 //basic library/framework imports
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 //component imports
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
@@ -8,7 +9,6 @@ import { UserContext, GuidesContext } from '../../contexts/index';
 
 //initial value for the NEW how to object
 const initialValue = {
-
     user_id:-1,
     title:'',
     type:'',
@@ -38,7 +38,6 @@ const CreateHowTo = props => {
 
     //Handles the form when it is ready to be sent to the server
     const HandleSubmit = e => {
-
         e.preventDefault();
 
         axiosWithAuth( 'post', 'https://bw-how-to.herokuapp.com/guides', newHowTo )
@@ -50,13 +49,11 @@ const CreateHowTo = props => {
                 props.history.push('/userpagenewsfeed')
             })
             .catch(err => console.log(err) )
-
     };
 
 
     //Adds another key/value pair to the how-to object
     const addStep = e => {
-
         e.preventDefault();
 
         setSteps([
@@ -75,47 +72,53 @@ const CreateHowTo = props => {
     if(user.type==='creator'){
         // the form where data will be inputed
         return(
-            <form onSubmit={HandleSubmit}>
-                <input 
-                    name="title"
-                    type="text"
-                    value={newHowTo.title}
-                    onChange={HandleChange}
-                    placeholder="title"
-                />
-                <select name="type" onChange={HandleChange}>
-                    <option value="selected">category</option>
-                    <option value="cars">Cars and Other Vehices</option>
-                    <option value="computers">Computers and Electronics</option>
-                    <option value="food">Food and Cooking</option>
-                    <option value="finance">Finance and Business></option>
-                    <option value="hobbies">Hobbies and Craft</option>
-                    <option value="home">Home and Garden</option>
-                    <option value="lifeHacks">Life Hacks</option>
-                </select>  
-                <input 
-                    name="description"
-                    type="text"
-                    value={newHowTo.description}
-                    onChange={HandleChange}
-                    placeholder="desctiption"
-                />            
-                {steps.map(step  => ( 
-                    <input
-                    name={`step_${step}`}
-                    type="textarea"
-                    value={newHowTo[`step_${step}`]}
-                    onChange={HandleChange}
-                    placeholder={`step ${step}`}
+            <div>
+                <Link to='/dashboard'>Home</Link>
+                <form onSubmit={HandleSubmit}>
+                    <input 
+                        name="title"
+                        type="text"
+                        value={newHowTo.title}
+                        onChange={HandleChange}
+                        placeholder="title"
                     />
-                ))}
-                <button onClick={addStep}>add next step</button>
-                <button onClick={HandleSubmit}>Submit</button>
-            </form>
+                    <select name="type" onChange={HandleChange}>
+                        <option value="selected">category</option>
+                        <option value="cars">Cars and Other Vehices</option>
+                        <option value="computers">Computers and Electronics</option>
+                        <option value="food">Food and Cooking</option>
+                        <option value="finance">Finance and Business></option>
+                        <option value="hobbies">Hobbies and Craft</option>
+                        <option value="home">Home and Garden</option>
+                        <option value="lifeHacks">Life Hacks</option>
+                    </select>  
+                    <input 
+                        name="description"
+                        type="text"
+                        value={newHowTo.description}
+                        onChange={HandleChange}
+                        placeholder="description"
+                    />            
+                    {steps.map(step  => ( 
+                        <input
+                        name={`step_${step}`}
+                        type="textarea"
+                        value={newHowTo[`step_${step}`]}
+                        onChange={HandleChange}
+                        placeholder={`step ${step}`}
+                        />
+                    ))}
+                    <button onClick={addStep}>add next step</button>
+                    <button onClick={HandleSubmit}>Submit</button>
+                </form>
+            </div>
         );
     }
     return(
+        <div>
+        <Link to='/dashboard'>Home</Link>
         <h2>MUST SIGN UP IN ORDER TO POST</h2>
+        </div>
     )
 };
 
