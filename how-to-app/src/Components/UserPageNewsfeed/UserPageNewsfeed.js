@@ -11,7 +11,7 @@ const UserPageNewsfeed = props => {
     return(
         <div>
             {guides.map(guide=>
-            <HowToCard title={guide} steps={guide.description} />
+                <HowToCard title={guide} steps={guide.description} id={guide.id}/>
             )}
         </div>
     );

@@ -17,7 +17,9 @@ import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
 function App() {
   return (
     <div className="App">
-      <h1> </h1>
+      <Link to='/'>
+        <h1>How To</h1>
+      </Link>
       <Route exact path="/" component={SignIn} />
 
       {/* <Route exact path="/" component={HomePage} />
@@ -32,6 +34,7 @@ function App() {
         <PrivateRoute path="/dashboard" component={Dashboard} />
         <PrivateRoute path="/searchresults" component={SearchResults} />
         <PrivateRoute path='/userpagenewsfeed' component={UserPageNewsfeed} />
+        <PrivateRoute path="/guides/:id" component={HowToGuide} />
       </GuidesProvider>
     </div>
   );
