@@ -4,7 +4,7 @@ import axios from 'axios';
 
 //component imports
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
-import { UserContext } from '../../contexts/index';
+import { UserContext, GuidesContext } from '../../contexts/index';
 
 //initial value for the NEW how to object
 const initialValue = {
@@ -18,9 +18,10 @@ const initialValue = {
 
 const CreateHowTo = props => {
     const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
-    const [user] = useContext(UserContext)//Makes user context store available to validate {type: 'creator'}
-
+    const [user] = useContext(UserContext);//Makes user context store available to validate {type: 'creator'}
+    const [guides, setGuides] = useContext(GuidesContext);
     let [ steps, setSteps ] = useState([1]); //variable to add more steps
+
 
     //Handles the Change that is made the values
     const HandleChange = e => {
@@ -30,6 +31,7 @@ const CreateHowTo = props => {
 
         setNewHowTo({
             ...newHowTo,
+            user_id : user.id,
             [e.target.name] : value
         })
     }
@@ -39,8 +41,14 @@ const CreateHowTo = props => {
 
         e.preventDefault();
 
-        axiosWithAuth( 'post', '/guides', newHowTo )
-            .then(res => props.history.push(`/guides/${newHowTo.user_id}`))
+        axiosWithAuth( 'post', 'https://bw-how-to.herokuapp.com/guides', newHowTo )
+            .then(res => {
+                setGuides([
+                    ...guides,
+                    newHowTo
+                ])
+                props.history.push('/userpagenewsfeed')
+            })
             .catch(err => console.log(err) )
 
     };
@@ -65,7 +73,7 @@ const CreateHowTo = props => {
     };
 
     if(user.type==='creator'){
-        //the form where data will be inputed
+        // the form where data will be inputed
         return(
             <form onSubmit={HandleSubmit}>
                 <input 
