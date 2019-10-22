@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 //Component Imports
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
@@ -10,7 +11,7 @@ import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 function App() {
   return (
