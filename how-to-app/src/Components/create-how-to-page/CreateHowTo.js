@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Container, Form, Label, FormGroup, Input } from "reactstrap";
-
+import Header from "../Header";
 //component imports
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { UserContext, GuidesContext } from "../../contexts/index";
@@ -66,9 +66,7 @@ const CreateHowTo = props => {
   // the form where data will be inputed
   return (
     <Container className="create-how-to-cont">
-      <header className="login-header">
-        <h4 className="login-logo">How-To</h4>
-      </header>
+      <Header />
       <h3 className="create-how-to-text">Create a How-To</h3>
       <Form className="create-how-to-form" onSubmit={HandleSubmit}>
         <FormGroup className="how-to-title-category">
@@ -86,7 +84,9 @@ const CreateHowTo = props => {
           </div>
 
           <div className="category-ht">
-            <Label for="type">Category</Label>
+            <Label className="ht-title-text" for="type">
+              Category
+            </Label>
             <Input
               className="ht-title-input"
               type="select"
@@ -105,21 +105,28 @@ const CreateHowTo = props => {
           </div>
         </FormGroup>
         <FormGroup className="how-to-skills-tools">
-          <Label for="description">Skills Required</Label>
-          <Input
-            name="description"
-            type="textarea"
-            value={newHowTo.description}
-            onChange={HandleChange}
-          />
-
-          <Label for="tools">Tools Required</Label>
-          <Input
-            name="tools"
-            type="textarea"
-            value={newHowTo.tools}
-            onChange={HandleChange}
-          />
+          <div className="skills-ht">
+            <Label className="ht-title-text" for="description">
+              Skills Required
+            </Label>
+            <Input
+              name="description"
+              type="textarea"
+              value={newHowTo.description}
+              onChange={HandleChange}
+            />
+          </div>
+          <div className="tools-ht">
+            <Label className="ht-title-text" for="tools">
+              Tools Required
+            </Label>
+            <Input
+              name="tools"
+              type="textarea"
+              value={newHowTo.tools}
+              onChange={HandleChange}
+            />
+          </div>
         </FormGroup>
         {steps.map(step => (
           <FormGroup className="how-to-steps">
