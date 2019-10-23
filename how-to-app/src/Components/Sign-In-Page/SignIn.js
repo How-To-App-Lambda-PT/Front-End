@@ -40,7 +40,7 @@ const SignIn = props => {
                   console.log(res.data);
                   console.log("POST", values);
                   localStorage.setItem("token", res.data.token);
-                  localStorage.setItem("id", res.data.id);
+                  localStorage.setItem("user", JSON.stringify(res.data));
                   setUsers(res.data);
                   setSubmitting(false);
                   resetForm();
