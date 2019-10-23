@@ -1,71 +1,58 @@
 import React, { useState } from "react";
 // import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { withFormik, Form, Field } from 'formik';
+import { withFormik, Form, Field } from "formik";
+import * as Yup from "yup";
 
-function CreateAccount() {
-// const CreateAccount = props => {
-//   const [account, setAccount] = useState({
-//     email: "",
-//     password: "",
-//     verifyPassword: ""
-//   });
-
-//   const onInputChange = event => {
-//     setAccount({
-//       ...account,
-//       [event.target.name]: event.target.value
-//     });
-//   };
-
-  
-
+function CreateAccount({errors, touched}) {
   return (
     <Form>
+      <div>
+        {touched.email && errors.email && <p>{errors.email}</p>} 
+          <label>
+            Email
+            <Field type="text" name="email" />
+          </label>
+      </div>
+
+      <div>
+        {touched.password && errors.password && <p>{errors.password}</p>}
+          <label>
+            Password
+            <Field type="text" name="password" />
+          </label>
+      </div>
+
       <label>
-        Email:
-          <Field type='text' name='username' />
+        Verify Password
+        <Field type="text" name="verifyPassword" />
       </label>
-      {/* <FormGroup>
-        <label for="Email">Email</label>
-        <Field
-          type="text"
-          name="email"
-          id="email"
-        />
-      </FormGroup>
-      <FormGroup>
-        <label for="Password">Password</label>
-        <Field
-          type="password"
-          name="password"
-          id="password"
-        />
-      </FormGroup>
-      <FormGroup>
-        <label for="verifyPassword">Verify Password</label>
-        <Field
-          type="password"
-          name="verifypassword"
-          id="vPassword"
-        />
-      </FormGroup> */}
 
       <button>Submit</button>
     </Form>
   );
-};
+}
 
 const FormikCreateAccount = withFormik({
-  mapPropsToValues({ username, password }) {
+  mapPropsToValues({ email, password, verifyPassword }) {
     return {
-      username: username || "",
-      password: password || ""
+      email: email || "",
+      password: password || "",
+      verifyPassword: verifyPassword || ""
     };
   },
+
+  validationSchema: Yup.object().shape({
+    email: Yup.string()
+      .email()
+      .required(),
+    password: Yup.string()
+      .min(6)
+      .required()
+  }),
 
   handleSubmit(values) {
     console.log(values);
   }
 })(CreateAccount);
 
-export default CreateAccount;
+export default FormikCreateAccount;
