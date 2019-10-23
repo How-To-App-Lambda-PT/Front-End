@@ -11,8 +11,8 @@ import Dashboard from "./Components/Dashboard-page/Dashboard";
 import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
-
 import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
+
 
 function App() {
   return (
