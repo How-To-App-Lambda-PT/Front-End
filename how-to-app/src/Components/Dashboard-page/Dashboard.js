@@ -4,7 +4,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Container, Segment } from "semantic-ui-react";
 import SearchField from '../SearchResults/SearchField';
 
-const Dashboard = () => {
+const Dashboard = props => {
   const [user] = useContext(UserContext);
   const localUser = JSON.parse(localStorage.user)
 
@@ -26,12 +26,13 @@ const Dashboard = () => {
         Badges and social links
       </Segment>
       <Container>
-        <SearchField />
+        <SearchField history={props.history}/>
       </Container>
       <Container>
         My How-To's and Favorites
       </Container>
-      <Link to='/searchresults'> Search</Link>
+      
+      <Link to='/createpost'> Create Guide</Link>
     </Container>
   )
 };

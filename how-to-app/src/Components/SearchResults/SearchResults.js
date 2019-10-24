@@ -8,9 +8,7 @@ const SearchResults = () => {
 
   return (
     <Segment>
-      <Header>Search How To's</Header>
-      <SearchField />
-      <HowToCardList />
+      <HowToCardList rows={1}/>
     </Segment>
   )
 }
