@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Segment } from "semantic-ui-react";
 import axios from "axios";
 import { UserContext } from "../../contexts/index";
@@ -111,6 +111,11 @@ const SignIn = props => {
               </Form>
             )}
           </Formik>
+        </div>
+        <div>
+          <Link to='/CreateAccount/CreateAccount'>
+            <Button>Sign Up!</Button>
+          </Link>
         </div>
       </Container>
     </Container>

@@ -7,17 +7,6 @@ import { Route } from "react-router-dom";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 //Component Imports
-// import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
-
-// import PrivateRoute from "./Components/Routes/PrivateRoute"
-
-// import PrivateRoute from "./PrivateRoute"
-// import Login from './Components/Login';
-// import User from './Components/User';
-
-// import { Route } from "react-router-dom";
-
-//Component Imports
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
 import PrivateRoute from "./PrivateRoute";
 import SignIn from "./Components/Sign-In-Page/SignIn";
