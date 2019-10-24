@@ -62,94 +62,114 @@ const CreateHowTo = props => {
     });
   };
 
-  //   if (user.type === "creator") {
-  // the form where data will be inputed
-  return (
-    <Container className="create-how-to-cont">
-      <Header />
-      <h3 className="create-how-to-text">Create a How-To</h3>
-      <Form className="create-how-to-form" onSubmit={HandleSubmit}>
-        <FormGroup className="how-to-title-category">
-          <div className="title-ht">
-            <Label className="ht-title-text" for="title">
-              Title of How-To
-            </Label>
-            <Input
-              className="ht-title-input"
-              name="title"
-              type="text"
-              value={newHowTo.title}
-              onChange={HandleChange}
-            />
-          </div>
+  if (user.type === "creator") {
+    // the form where data will be inputed
+    return (
+      <Container className="create-how-to-cont">
+        <Header />
+        <h3 className="create-how-to-text">Create a How-To</h3>
+        <Form className="create-how-to-form" onSubmit={HandleSubmit}>
+          <FormGroup className="how-to-title-category">
+            <div className="title-ht">
+              <Label className="ht-title-text" for="title">
+                Title of How-To
+              </Label>
+              <Input
+                className="ht-title-input"
+                name="title"
+                type="text"
+                value={newHowTo.title}
+                onChange={HandleChange}
+              />
+            </div>
 
-          <div className="category-ht">
-            <Label className="ht-title-text" for="type">
-              Category
-            </Label>
-            <Input
-              className="ht-title-input"
-              type="select"
-              name="type"
-              onChange={HandleChange}
-            >
-              <option value="selected"></option>
-              <option value="cars">Cars and Other Vehices</option>
-              <option value="computers">Computers and Electronics</option>
-              <option value="food">Food and Cooking</option>
-              <option value="finance">Finance and Business></option>
-              <option value="hobbies">Hobbies and Craft</option>
-              <option value="home">Home and Garden</option>
-              <option value="lifeHacks">Life Hacks</option>
-            </Input>
-          </div>
-        </FormGroup>
-        <FormGroup className="how-to-skills-tools">
-          <div className="skills-ht">
-            <Label className="ht-title-text" for="description">
-              Skills Required
-            </Label>
-            <Input
-              name="description"
-              type="textarea"
-              value={newHowTo.description}
-              onChange={HandleChange}
-            />
-          </div>
-          <div className="tools-ht">
-            <Label className="ht-title-text" for="tools">
-              Tools Required
-            </Label>
-            <Input
-              name="tools"
-              type="textarea"
-              value={newHowTo.tools}
-              onChange={HandleChange}
-            />
-          </div>
-        </FormGroup>
-        {steps.map(step => (
-          <FormGroup className="how-to-steps">
-            <Label for={`step_${step}`}>{`step ${step}`}</Label>
-            <Input
-              name={`step_${step}`}
-              type="textarea"
-              value={newHowTo[`step_${step}`]}
-              onChange={HandleChange}
-            />
+            <div className="category-ht">
+              <Label className="ht-title-text" for="type">
+                Category
+              </Label>
+              <Input
+                className="ht-title-input"
+                type="select"
+                name="type"
+                onChange={HandleChange}
+              >
+                <option value="selected"></option>
+                <option className="ht-options" value="cars">
+                  Cars and Other Vehices
+                </option>
+                <option className="ht-options" value="computers">
+                  Computers and Electronics
+                </option>
+                <option className="ht-options" value="food">
+                  Food and Cooking
+                </option>
+                <option className="ht-options" value="finance">
+                  Finance and Business
+                </option>
+                <option className="ht-options" value="hobbies">
+                  Hobbies and Craft
+                </option>
+                <option className="ht-options" value="home">
+                  Home and Garden
+                </option>
+                <option className="ht-options" value="lifeHacks">
+                  Life Hacks
+                </option>
+              </Input>
+            </div>
           </FormGroup>
-        ))}
-        <button className="btn-add-step" onClick={addStep}>
-          add next step
-        </button>
-        <button className="how-to-submit" onClick={HandleSubmit}>
-          Submit
-        </button>
-      </Form>
-    </Container>
-  );
+          <FormGroup className="how-to-skills-tools">
+            <div className="skills-ht">
+              <Label className="ht-boxes-text" for="description">
+                Skills Required
+              </Label>
+              <Input
+                className="ht-skills-input"
+                name="description"
+                type="textarea"
+                value={newHowTo.description}
+                onChange={HandleChange}
+              />
+            </div>
+            <div className="tools-ht">
+              <Label className="ht-boxes-text" for="tools">
+                Tools Required
+              </Label>
+              <Input
+                className="ht-skills-input"
+                name="tools"
+                type="textarea"
+                value={newHowTo.tools}
+                onChange={HandleChange}
+              />
+            </div>
+          </FormGroup>
+          {steps.map(step => (
+            <FormGroup className="how-to-steps">
+              <Label
+                className="ht-steps-text"
+                for={`step_${step}`}
+              >{`Step ${step}`}</Label>
+              <Input
+                className="ht-step-input"
+                name={`step_${step}`}
+                type="textarea"
+                value={newHowTo[`step_${step}`]}
+                onChange={HandleChange}
+              />
+            </FormGroup>
+          ))}
+          <button className="btn-add-step" onClick={addStep}>
+            + add next step
+          </button>
+          <button className="how-to-submit" onClick={HandleSubmit}>
+            Submit
+          </button>
+        </Form>
+      </Container>
+    );
+  }
+  return <h2>MUST SIGN UP IN ORDER TO POST</h2>;
 };
-// return <h2>MUST SIGN UP IN ORDER TO POST</h2>;
-// };
 
 export default CreateHowTo;
