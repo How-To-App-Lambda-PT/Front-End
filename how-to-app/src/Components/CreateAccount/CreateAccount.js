@@ -1,35 +1,38 @@
 import React, { useState } from "react";
-// import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { withFormik, Form, Field } from "formik";
+import { Link } from 'react-router-dom';
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { withFormik, Field } from "formik";
 import * as Yup from "yup";
+import Header from '../Header';
+import './CreateAccount.css';
 
 function CreateAccount({errors, touched}) {
   return (
+    // <Header />
+
     <Form>
-      <div>
+      <div className='email'>
         {touched.email && errors.email && <p>{errors.email}</p>} 
-          <label>
-            Email
+          <Label>Email</Label>
             <Field type="text" name="email" />
-          </label>
       </div>
 
-      <div>
+      <div className='password'>
         {touched.password && errors.password && <p>{errors.password}</p>}
-          <label>
-            Password
+          <Label>Password</Label>
             <Field type="text" name="password" />
-          </label>
       </div>
 
-      <label>
-        Verify Password
-        <Field type="text" name="verifyPassword" />
-      </label>
-
-      <button>Submit</button>
+      <div className='verifyPassword'>
+        <Label>Verify Password</Label>
+          <Field type="text" name="verifyPassword" />
+      </div>
+   
+      <div className='submit'>
+        <Button>Submit</Button>
+      </div>
     </Form>
-  );
+  ); 
 }
 
 const FormikCreateAccount = withFormik({

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 import { UserContext } from "../../contexts/index";
 import * as Yup from "yup";
@@ -105,6 +106,17 @@ const SignIn = props => {
                   >
                     Submit
                   </Button>
+                </div>
+                <div className="button-div">
+                  <Link to='./Components/CreateAccount.js'>
+                  <Button
+                    className="SignUp-button"
+                    type="submit"
+                    // disabled={isSubmitting}
+                  >
+                    Sign Up!
+                  </Button>
+                  </Link>
                 </div>
               </Form>
             )}
