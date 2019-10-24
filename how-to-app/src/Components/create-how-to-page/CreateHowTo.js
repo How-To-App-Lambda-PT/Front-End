@@ -8,20 +8,26 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { UserContext, GuidesContext } from "../../contexts/index";
 
 //initial value for the NEW how to object
-const initialValue = {
-  user_id: -1,
-  title: "",
-  type: "",
-  description: "",
-  tools: "",
-  step_1: ""
-};
+
 
 const CreateHowTo = props => {
-  const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
+
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
+  console.log('CreateHowTo:', user)
+  const initialValue = {
+    user_id: user.id,
+    type: user.type,
+    title: "",
+    description: "Things you should know",
+    step_1: ""
+  };
+
+  const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
+ 
   const [guides, setGuides] = useContext(GuidesContext);
   let [steps, setSteps] = useState([1]); //variable to add more steps
+
+
 
   //Handles the Change that is made the values
   const HandleChange = e => {
@@ -62,7 +68,7 @@ const CreateHowTo = props => {
     });
   };
 
-  if (user.type === "creator") {
+  // if (user.type === "creator") {
     //   the form where data will be inputed
     return (
       <Container className="create-how-to-cont">
@@ -90,8 +96,8 @@ const CreateHowTo = props => {
               <Input
                 className="ht-title-input"
                 type="select"
-                name="type"
-                onChange={HandleChange}
+                name="category"
+                // onChange={HandleChange}
               >
                 <option value="selected"></option>
                 <option className="ht-options" value="cars">
@@ -118,34 +124,8 @@ const CreateHowTo = props => {
               </Input>
             </div>
           </FormGroup>
-          <FormGroup className="how-to-skills-tools">
-            <div className="skills-ht">
-              <Label className="ht-boxes-text" for="description">
-                Skills Required
-              </Label>
-              <Input
-                className="ht-skills-input"
-                name="description"
-                type="textarea"
-                value={newHowTo.description}
-                onChange={HandleChange}
-              />
-            </div>
-            <div className="tools-ht">
-              <Label className="ht-boxes-text" for="tools">
-                Tools Required
-              </Label>
-              <Input
-                className="ht-skills-input"
-                name="tools"
-                type="textarea"
-                value={newHowTo.tools}
-                onChange={HandleChange}
-              />
-            </div>
-          </FormGroup>
           {steps.map(step => (
-            <FormGroup className="how-to-steps">
+            <FormGroup key={step} className="how-to-steps">
               <Label
                 className="ht-steps-text"
                 for={`step_${step}`}
@@ -168,9 +148,6 @@ const CreateHowTo = props => {
         </Form>
       </Container>
     );
-  }
-  // return <h2>MUST SIGN UP IN ORDER TO POST</h2>;
-  return <Redirect to="/" />;
 };
 
 export default CreateHowTo;

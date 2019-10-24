@@ -39,8 +39,6 @@ const SignIn = props => {
               axios
                 .post(`https://bw-how-to.herokuapp.com/login`, values)
                 .then(res => {
-                  console.log(res.data);
-                  console.log("POST", values);
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data));
                   setUsers(res.data);
