@@ -18,7 +18,7 @@ const style = {
   },
 }
 
-const HowToGuide = () => {
+const HowToGuide = props => {
 
   const id = localStorage.guideId
 

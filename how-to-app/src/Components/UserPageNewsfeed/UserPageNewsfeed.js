@@ -12,7 +12,7 @@ const UserPageNewsfeed = props => {
     const [guides] = useContext(GuidesContext);
     const [user] = useContext(UserContext);
 
-    if(user.type=='creator'){
+
         if(guides==undefined){
             return <h2>loading...</h2>
         }
@@ -59,8 +59,6 @@ const UserPageNewsfeed = props => {
             </Table>
             </div>
     );
-}
-return <Redirect to='/' />
 }
 
 export default UserPageNewsfeed
