@@ -3,8 +3,10 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const UserContext = createContext();
 
+const currentUser = localStorage.user
+
 export const UserProvider = props => {
-  const [user, setUser] = useState(localStorage.user || {});
+  const [user, setUser] = useState(currentUser || {});
   console.log('UserProvider:', user)
 
   return (
@@ -20,8 +22,8 @@ export const GuidesProvider = props => {
   const [guides, setGuides] = useState();
   console.log('GuidesProvider:', guides)
   useEffect(() => {
-  //   return !localStorage.user ? setGuides([])
-  //     : 
+    return !currentUser ? setGuides([])
+      : 
   axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides`)
          .then(res => {
            console.log("GuidesProvider: GET:", res.data);
