@@ -3,7 +3,7 @@ import { Card } from "semantic-ui-react";
 import { GuidesContext } from "../../contexts/index";
 import HowToCard from "./HowToCard";
 
-const HowToCardList = () => {
+const HowToCardList = props => {
   const [guides] = useContext(GuidesContext);
 
   const guidesList = () => {
@@ -25,7 +25,7 @@ const HowToCardList = () => {
     )
   }
 
-  return <Card.Group itemsPerRow={3}>{guidesList()}</Card.Group>;
+  return <Card.Group itemsPerRow={props.rows}>{guidesList()}</Card.Group>;
 };
 
 export default HowToCardList;

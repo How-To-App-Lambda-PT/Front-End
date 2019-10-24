@@ -45,7 +45,7 @@ const CreateHowTo = props => {
         setGuides([...guides, newHowTo]);
         props.history.push("/userpagenewsfeed");
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(guides, newHowTo, err));
   };
 
   //Adds another key/value pair to the how-to object
