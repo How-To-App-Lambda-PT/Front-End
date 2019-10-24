@@ -19,13 +19,17 @@ export const GuidesProvider = props => {
   const [guides, setGuides] = useState();
 
   useEffect(() => {
-    axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides`)
-      .then(res => {
-        console.log("GuidesProvider: GET:", res.data);
-        setGuides(res.data);
-      })
-      .catch(err => console.log("contexts: index: GuidesProvider: GET:", err));
-  }, []);
+    return !localStorage.user ? setGuides([])
+      : 
+
+      axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides`)
+        .then(res => {
+          console.log("GuidesProvider: GET:", res.data);
+          setGuides(res.data);
+        })
+        .catch(err => console.log("contexts: index: GuidesProvider: GET:", err));
+    }, []);
+
 
   return (
     <GuidesContext.Provider value={[guides, setGuides]}>

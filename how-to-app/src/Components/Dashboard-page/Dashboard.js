@@ -31,6 +31,7 @@ const Dashboard = () => {
       <Container>
         My How-To's and Favorites
       </Container>
+      <Link to='/searchresults'> Search</Link>
     </Container>
   )
 };
