@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { Segment } from "semantic-ui-react";
 import axios from "axios";
 import { UserContext } from "../../contexts/index";
 import * as Yup from "yup";
@@ -41,7 +42,7 @@ const SignIn = props => {
                   console.log(res.data);
                   console.log("POST", values);
                   localStorage.setItem("token", res.data.token);
-                  localStorage.setItem("id", res.data.id);
+                  localStorage.setItem("user", JSON.stringify(res.data));
                   setUsers(res.data);
                   setSubmitting(false);
                   resetForm();
