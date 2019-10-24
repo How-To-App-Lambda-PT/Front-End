@@ -1,7 +1,21 @@
 import React from "react";
 import "./App.css";
+
+import CreateAccount from './Components/CreateAccount/CreateAccount.js';
+
 import { Route } from "react-router-dom";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
+//Component Imports
+// import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
+
+// import PrivateRoute from "./Components/Routes/PrivateRoute"
+
+// import PrivateRoute from "./PrivateRoute"
+// import Login from './Components/Login';
+// import User from './Components/User';
+
+// import { Route } from "react-router-dom";
 
 //Component Imports
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
@@ -13,7 +27,6 @@ import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
 import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
 
-
 function App() {
   return (
     <div className="App">
@@ -21,6 +34,7 @@ function App() {
         <h1>How To</h1>
       </Link>
       <Route exact path="/" component={SignIn} />
+      <Route path="/createAccount" render={() => <CreateAccount />} />
 
       {/* <Route exact path="/" component={HomePage} />
 
