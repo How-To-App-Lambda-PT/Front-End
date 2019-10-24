@@ -193,3 +193,17 @@
   /* float      : right; */
   margin-right  : 15%;
 }
+
+.tables {
+  border-bottom: none !important;
+}
+
+.nav_table {
+  width: 30%;
+}
+
+.welcome {
+  position   : absolute;
+  left       : 50%;
+  margin-left: -120px;
+}
