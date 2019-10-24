@@ -57,9 +57,19 @@ const HowToGuide = () => {
     )
   })
 
-  const videoLink = guide.link
+  const videoLink = guide.link || ''
   
-  const videoId = videoLink.split('=')[1]
+  const videoId = videoLink.split('=')[1] || ''
+
+  const videoPlayer = (
+    <Embed
+      style={style.last}
+      id={videoId}
+      source='youtube'
+      autoplay={true}
+      brandedUI
+    />
+  )
 
 
 
@@ -73,13 +83,7 @@ const HowToGuide = () => {
         </Card.Group>
       </Container>
       <Container>
-        <Embed
-          style={style.last}
-          id={videoId}
-          source='youtube'
-          autoplay={true}
-          brandedUI
-        />
+        {videoPlayer || 'No Video Available'}
       </Container>
     </Segment>
   )

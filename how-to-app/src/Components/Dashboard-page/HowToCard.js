@@ -5,6 +5,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const HowToCard = props => {
   console.log(props)
+  const guide = props.guide
 
 
   const deleteHowTo = e => {
@@ -16,14 +17,14 @@ const HowToCard = props => {
 
 
   const linkHandler = () => {
-    localStorage.setItem('guideId', props.id)
+    localStorage.setItem('guideId', guide.id)
   }
 
   return (
     <Card
-      header={props.title}
-      description={props.steps}
-      to={`/guides/${props.id}`}
+      header={guide.title}
+      description={guide.description}
+      to={`/guides/${guide.id}`}
       as={Link}
       onClick={linkHandler}
     />
