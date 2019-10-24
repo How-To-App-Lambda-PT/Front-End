@@ -1,36 +1,47 @@
+import { Container, Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { withFormik, Field } from "formik";
 import * as Yup from "yup";
-import Header from '../Header';
-import './CreateAccount.css';
+import './CreateAccount.css'
+// import '../../App.css';
 
 function CreateAccount({errors, touched}) {
   return (
 
-    <Form>
-      <div className='email'>
-        {touched.email && errors.email && <p>{errors.email}</p>} 
-          <Label>Email</Label>
-            <Field type="text" name="email" />
-      </div>
+    <Container className="super-cont">
+      <header className="login-header">
+       <h4 className="login-logo">How-To</h4>
+      </header>
 
-      <div className='password'>
-        {touched.password && errors.password && <p>{errors.password}</p>}
-          <Label>Password</Label>
-            <Field type="text" name="password" />
-      </div>
+      <Container className="login-cont">
 
-      <div className='verifyPassword'>
-        <Label>Verify Password</Label>
-          <Field type="text" name="verifyPassword" />
-      </div>
-   
-      <div className='submit'>
-        <Button>Submit</Button>
-      </div>
-    </Form>
+        <Form>
+          <div className='email'>
+            {touched.email && errors.email && <p>{errors.email}</p>} 
+              <Label>Email</Label>
+                <Field type="text" name="email" />
+          </div>
+
+          <div className='password'>
+            {touched.password && errors.password && <p>{errors.password}</p>}
+              <Label>Password</Label>
+                <Field type="text" name="password" />
+          </div>
+
+          <div className='verifyPassword'>
+            <Label>Verify Password</Label>
+              <Field type="text" name="verifyPassword" />
+          </div>
+      
+          <div className='submit'>
+            <Button>Submit</Button>
+          </div>
+        </Form>
+
+      </Container>
+
+    </Container>
   ); 
 }
 
