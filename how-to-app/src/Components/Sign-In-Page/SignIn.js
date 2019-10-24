@@ -44,7 +44,7 @@ const SignIn = props => {
                   setUsers(res.data);
                   setSubmitting(false);
                   resetForm();
-                  props.history.push("/dashboard");
+                  props.history.push("/userpagenewsfeed");
                 })
                 .catch(err => console.log("Login: POST:", values, err));
             }}
