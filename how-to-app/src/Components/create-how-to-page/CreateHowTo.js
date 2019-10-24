@@ -1,6 +1,6 @@
 //basic library/framework imports
 import React, { useState, useContext } from "react";
-import axios from "axios";
+import { Redirect } from "react-router-dom";
 import { Container, Form, Label, FormGroup, Input } from "reactstrap";
 import Header from "../Header";
 //component imports
@@ -63,7 +63,7 @@ const CreateHowTo = props => {
   };
 
   if (user.type === "creator") {
-    // the form where data will be inputed
+    //   the form where data will be inputed
     return (
       <Container className="create-how-to-cont">
         <Header />
@@ -169,7 +169,8 @@ const CreateHowTo = props => {
       </Container>
     );
   }
-  return <h2>MUST SIGN UP IN ORDER TO POST</h2>;
+  // return <h2>MUST SIGN UP IN ORDER TO POST</h2>;
+  return <Redirect to="/" />;
 };
 
 export default CreateHowTo;

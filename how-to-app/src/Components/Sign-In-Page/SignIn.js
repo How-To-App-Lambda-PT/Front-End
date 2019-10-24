@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Redirect } from 'react-router-dom';
 import { Segment } from "semantic-ui-react";
 import axios from "axios";
 import { UserContext } from "../../contexts/index";
@@ -8,10 +9,10 @@ import Error from "./Error";
 import { Container, Col, FormGroup, Label, Button } from "reactstrap";
 
 const SignIn = props => {
+
   const [_, setUsers] = useContext(UserContext);
 
   const initialValues = { username: "", password: "" };
-  // const [values, changeHandler] = useFormInput(initialValues);
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
@@ -22,7 +23,6 @@ const SignIn = props => {
       .required("Please enter a password")
   });
 
-  // const submitHandler = ;
 
   return (
     <Container className="super-cont">
@@ -35,7 +35,7 @@ const SignIn = props => {
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
-            onSubmit={(values, { setStatus, setSubmitting, resetForm }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               axios
                 .post(`https://bw-how-to.herokuapp.com/login`, values)
                 .then(res => {
@@ -43,7 +43,6 @@ const SignIn = props => {
                   console.log("POST", values);
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("id", res.data.id);
-                  // setUsers([...user, values]);
                   setUsers(res.data);
                   setSubmitting(false);
                   resetForm();

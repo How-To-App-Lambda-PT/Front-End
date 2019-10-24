@@ -7,14 +7,23 @@ const HowToCardList = () => {
   const [guides] = useContext(GuidesContext);
 
   const guidesList = () => {
-    return !guides ? (
-      <div>Loading ...</div>
-    ) : (
+    return (
       guides.map(guide => {
-        return <HowToCard title={guide.title} steps={guide.description} />;
+        return <HowToCard
+          key={guide.id}
+          title={guide.title}
+          steps={guide.description}
+          id={guide.id}
+        />;        
       })
     );
   };
+
+  if (!guides) {
+    return (
+      <div>Loading ..</div>
+    )
+  }
 
   return <Card.Group itemsPerRow={3}>{guidesList()}</Card.Group>;
 };
