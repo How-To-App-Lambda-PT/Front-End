@@ -8,7 +8,6 @@ import './CreateAccount.css';
 
 function CreateAccount({errors, touched}) {
   return (
-    // <Header />
 
     <Form>
       <div className='email'>

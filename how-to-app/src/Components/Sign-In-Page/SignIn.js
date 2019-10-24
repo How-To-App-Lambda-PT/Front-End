@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { Segment } from "semantic-ui-react";
 import axios from "axios";
 import { UserContext } from "../../contexts/index";
@@ -108,20 +108,14 @@ const SignIn = props => {
                     Submit
                   </Button>
                 </div>
-                <div className="button-div">
-                  <Link to='./Components/CreateAccount.js'>
-                  <Button
-                    className="SignUp-button"
-                    type="submit"
-                    // disabled={isSubmitting}
-                  >
-                    Sign Up!
-                  </Button>
-                  </Link>
-                </div>
               </Form>
             )}
           </Formik>
+        </div>
+        <div>
+          <Link to='/CreateAccount/CreateAccount'>
+            <Button>Sign Up!</Button>
+          </Link>
         </div>
       </Container>
     </Container>
