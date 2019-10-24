@@ -26,13 +26,12 @@ import { GuidesProvider } from "./contexts";
 import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
 import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
+import Header from "./Components/Header";
 
 function App() {
   return (
     <div className="App">
-      <Link to='/'>
-        <h1>How To</h1>
-      </Link>
+      <Header />
       <Route exact path="/" component={SignIn} />
       <Route path="/createAccount" render={() => <CreateAccount />} />
 
