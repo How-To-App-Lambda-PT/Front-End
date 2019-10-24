@@ -5,7 +5,7 @@ export const UserContext = createContext();
 
 export const UserProvider = props => {
   const [user, setUser] = useState(localStorage.user || {});
-
+  console.log('UserProvider:', user)
 
   return (
     <UserContext.Provider value={[user, setUser]}>
@@ -18,10 +18,11 @@ export const GuidesContext = createContext();
 
 export const GuidesProvider = props => {
   const [guides, setGuides] = useState();
-
+  console.log('GuidesProvider:', guides)
   useEffect(() => {
-    return !localStorage.user ? setGuides([])
-      : axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides`)
+  //   return !localStorage.user ? setGuides([])
+  //     : 
+  axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides`)
          .then(res => {
            console.log("GuidesProvider: GET:", res.data);
            setGuides(res.data);

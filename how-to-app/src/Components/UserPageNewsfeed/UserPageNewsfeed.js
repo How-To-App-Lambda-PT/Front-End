@@ -40,7 +40,7 @@ const UserPageNewsfeed = props => {
                           <Table.Cell textAlign='center'><h2>Message Boards</h2></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h2>My Account</h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h2><Link to='/dashboard'>My Account</Link></h2></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                           <Table.Cell textAlign='center'><h2><Link to='/createpost'>Create a How-to</Link></h2></Table.Cell>
@@ -50,7 +50,7 @@ const UserPageNewsfeed = props => {
                   </Table.Cell>
                   <Table.Cell>
                     {guides.map(guide=>
-                      <HowToCard title={guide.title} steps={guide.description} />
+                      <HowToCard key={guide.id} guide={guide} />
                     )}
                   </Table.Cell>
                 </Table.Row>                
