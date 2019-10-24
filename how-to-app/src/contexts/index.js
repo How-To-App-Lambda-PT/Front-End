@@ -4,7 +4,8 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 export const UserContext = createContext();
 
 export const UserProvider = props => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState();
+
 
   return (
     <UserContext.Provider value={[user, setUser]}>
