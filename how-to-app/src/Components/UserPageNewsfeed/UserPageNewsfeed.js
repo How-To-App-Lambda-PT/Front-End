@@ -31,10 +31,10 @@ const UserPageNewsfeed = props => {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell verticalAlign='top' className='nav_table'>
-                    <Table celled>
+                    <Table celled structured>
                       <Table.Body>
                         <Table.Row>
-                          <Table.Cell textAlign='center' width='2'><h2>Following</h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h2>Following</h2></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                           <Table.Cell textAlign='center'><h2>Message Boards</h2></Table.Cell>
