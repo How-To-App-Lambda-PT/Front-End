@@ -23,7 +23,7 @@ function App() {
         <h1>How To</h1>
       </Link>
       <Route exact path="/" component={SignIn} />
-      <Route path="/createAccount" render={() => <CreateAccount />} />
+      <Route path="/createAccount" render={(props) => <CreateAccount {...props} />} />
 
       {/* <Route exact path="/" component={HomePage} />
 
