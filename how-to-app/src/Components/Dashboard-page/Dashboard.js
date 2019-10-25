@@ -32,6 +32,13 @@ const Dashboard = props => {
       <div className="cont-cont">
         <div className="badges-cont">
           <h2 className="badges-earned">Badges Earned</h2>
+          <div className="badges-container">
+            <div className="yellow-one"></div>
+            <div className="blue-one"></div>
+            <div className="purple-one"></div>
+            <div className="red-one"></div>
+          </div>
+          <div className="social-account"></div>
         </div>
       </div>
       <div className="search-field-dash">

@@ -378,3 +378,36 @@
 
   color: #ffffff;
 }
+
+.yellow-one {
+  width: 55px;
+  height: 55px;
+  background: #f7e32c;
+  border-radius: 50%;
+}
+.blue-one {
+  width: 55px;
+  height: 55px;
+  background: #242d8f;
+  border-radius: 50%;
+}
+.purple-one {
+  width: 55px;
+  height: 55px;
+  background: #48069b;
+  border-radius: 50%;
+}
+.red-one {
+  width: 55px;
+  height: 55px;
+  background: #f50202;
+  border-radius: 50%;
+}
+
+.badges-container {
+  display: flex;
+  width: 30%;
+  float: left;
+  margin-left: 7%;
+  margin-top: 1%;
+}
