@@ -5,14 +5,14 @@ import HowToCard from "./HowToCard";
 
 const HowToCardList = props => {
   const [guides] = useContext(GuidesContext);
-
+  console.log('HowToCardList:', guides)
   const guidesList = () => {
     return (
       guides.map(guide => {
         return <HowToCard
           key={guide.id}
           title={guide.title}
-          steps={guide.description}
+          description={guide.description}
           id={guide.id}
         />;        
       })

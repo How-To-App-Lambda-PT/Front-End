@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const HowToCard = props => {
-  console.log(props)
-  const guide = props.guide
+  console.log('HowToCard:', props)
+  // const guide = props
 
 
   const deleteHowTo = e => {
@@ -17,14 +17,14 @@ const HowToCard = props => {
 
 
   const linkHandler = () => {
-    localStorage.setItem('guideId', guide.id)
+    localStorage.setItem('guideId', props.id)
   }
 
   return (
     <Card
-      header={guide.title}
-      description={guide.description}
-      to={`/guides/${guide.id}`}
+      header={props.title}
+      description={props.description}
+      to={`/guides/${props.id}`}
       as={Link}
       onClick={linkHandler}
     />
