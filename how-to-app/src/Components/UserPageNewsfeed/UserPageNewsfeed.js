@@ -50,10 +50,10 @@ const UserPageNewsfeed = props => {
                     </Table>
                   </Table.Cell>
                   <Table.Cell>
-                    {guides.map(guide=>
+                    {/* {guides.map(guide=>
                       <HowToCard key={guide.id} guide={guide} />
-                    )}
-                    {/* <HowToCardList /> */}
+                    )} */}
+                    <HowToCardList rows={1}/>
                   </Table.Cell>
                 </Table.Row>                
               </Table.Body>  

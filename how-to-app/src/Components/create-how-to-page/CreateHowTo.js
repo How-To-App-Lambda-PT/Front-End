@@ -13,7 +13,7 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 const CreateHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
-  console.log('CreateHowTo:', user)
+
   const initialValue = {
     user_id: user.id,
     type: user.type,
@@ -37,7 +37,6 @@ const CreateHowTo = props => {
 
     setNewHowTo({
       ...newHowTo,
-      user_id: user.id,
       [e.target.name]: value
     });
   };
@@ -46,12 +45,20 @@ const CreateHowTo = props => {
   const HandleSubmit = e => {
     e.preventDefault();
 
-    axiosWithAuth("post", "https://bw-how-to.herokuapp.com/guides", newHowTo)
-      .then(res => {
-        setGuides([...guides, newHowTo]);
-        props.history.push("/userpagenewsfeed");
-      })
-      .catch(err => console.log(guides, newHowTo, err));
+    const duplicateTitle = guides.map(guide => guide.title == newHowTo.title).includes(true)
+
+    if (!duplicateTitle) {
+
+      axiosWithAuth("post", "https://bw-how-to.herokuapp.com/guides", newHowTo)
+        .then(res => {
+          setGuides([...guides, newHowTo]);
+          props.history.push("/userpagenewsfeed");
+        })
+        .catch(err => console.log('CreateHowTo: newHowTo=', newHowTo, 'guides=', guides, err));
+    } else {
+      //TODO: make better response to a duplicate title
+      console.log('Guide already exists with that title')
+    }
   };
 
   //Adds another key/value pair to the how-to object

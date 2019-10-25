@@ -13,7 +13,7 @@ const SearchResults = () => {
   return (
     <Segment>
       <div>{`${guides.length} guides contain the word ${localStorage.searchTerm}`}</div>
-      <HowToCardList />
+      <HowToCardList rows={1}/>
     </Segment>
   )
 }

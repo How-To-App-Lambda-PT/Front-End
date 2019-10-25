@@ -5,8 +5,6 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const HowToCard = props => {
   console.log('HowToCard:', props)
-  // const guide = props
-
 
   const deleteHowTo = e => {
     
