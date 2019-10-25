@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const HowToCard = props => {
-  console.log(props)
+  console.log('HowToCard:', props)
+  // const guide = props
 
 
   const deleteHowTo = e => {
@@ -22,7 +23,7 @@ const HowToCard = props => {
   return (
     <Card
       header={props.title}
-      description={props.steps}
+      description={props.description}
       to={`/guides/${props.id}`}
       as={Link}
       onClick={linkHandler}

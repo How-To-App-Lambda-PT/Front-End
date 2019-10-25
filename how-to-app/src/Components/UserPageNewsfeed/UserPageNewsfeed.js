@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Table } from 'semantic-ui-react';
 import Header from '../Header'
+import HowToCardList from '../Dashboard-page/HowToCardList';
 
 
 const UserPageNewsfeed = props => {
@@ -12,8 +13,8 @@ const UserPageNewsfeed = props => {
     const [guides] = useContext(GuidesContext);
     const [user] = useContext(UserContext);
 
-    if(user.type=='creator'){
-        if(guides==undefined){
+
+        if(!guides){
             return <h2>loading...</h2>
         }
         return(
@@ -31,16 +32,16 @@ const UserPageNewsfeed = props => {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell verticalAlign='top' className='nav_table'>
-                    <Table celled>
+                    <Table celled structured>
                       <Table.Body>
                         <Table.Row>
-                          <Table.Cell textAlign='center' width='2'><h2>Following</h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h2>Following</h2></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                           <Table.Cell textAlign='center'><h2>Message Boards</h2></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h2>My Account</h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h2><Link to='/dashboard'>My Account</Link></h2></Table.Cell>
                         </Table.Row>
                         <Table.Row>
                           <Table.Cell textAlign='center'><h2><Link to='/createpost'>Create a How-to</Link></h2></Table.Cell>
@@ -50,8 +51,9 @@ const UserPageNewsfeed = props => {
                   </Table.Cell>
                   <Table.Cell>
                     {guides.map(guide=>
-                      <HowToCard title={guide.title} steps={guide.description} />
+                      <HowToCard key={guide.id} guide={guide} />
                     )}
+                    {/* <HowToCardList /> */}
                   </Table.Cell>
                 </Table.Row>                
               </Table.Body>  
@@ -59,8 +61,6 @@ const UserPageNewsfeed = props => {
             </Table>
             </div>
     );
-}
-return <Redirect to='/' />
 }
 
 export default UserPageNewsfeed
