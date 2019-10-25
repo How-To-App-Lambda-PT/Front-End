@@ -112,7 +112,7 @@ const SignIn = props => {
           </Formik>
         </div>
         <div>
-          <Link to='/CreateAccount/CreateAccount'>
+          <Link to='/createAccount'>
             <Button>Sign Up!</Button>
           </Link>
         </div>
