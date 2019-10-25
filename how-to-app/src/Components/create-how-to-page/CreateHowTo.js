@@ -25,6 +25,7 @@ const CreateHowTo = props => {
   const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
  
   const [guides, setGuides] = useContext(GuidesContext);
+  
   let [steps, setSteps] = useState([1]); //variable to add more steps
 
 

@@ -18,6 +18,8 @@ const SearchField = props => {
   const [values, changeHandler] = useFormInput(initialValues)
 
   const searchHandler = () => {
+
+    console.log(values)
     setFilters([...filters, values.searchValue])
     const filteredResults = guides.filter(guide => guide.title.includes(values.searchValue))
     setGuides(filteredResults)

@@ -10,10 +10,9 @@ const HowToCardList = props => {
     return (
       guides.map(guide => {
         return <HowToCard
-          key={guide.id}
-          title={guide.title}
-          steps={guide.description}
-          id={guide.id}
+          key={guide.id} 
+          guide={guide}
+          type={'searchResult'}
         />;        
       })
     );

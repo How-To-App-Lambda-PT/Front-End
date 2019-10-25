@@ -3,12 +3,11 @@ import { GuidesContext, UserContext } from '../../contexts/index'
 import HowToCard from '../Dashboard-page/HowToCard'
 import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { Table } from 'semantic-ui-react';
+import { Table, Search } from 'semantic-ui-react';
 import Header from '../Header'
 
 
-const UserPageNewsfeed = props => {
-    
+const UserPageNewsfeed = props => {    
     const [guides] = useContext(GuidesContext);
     const [user] = useContext(UserContext);
 
@@ -22,10 +21,8 @@ const UserPageNewsfeed = props => {
             <Table attached="top" basic>
 
               <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell className='tables' textAlign='center'>Top How-tos</Table.HeaderCell>
+                  <Table.HeaderCell className='tables'>.</Table.HeaderCell>
                   <Table.HeaderCell className='tables welcome'><h1>Welcome {user.username}</h1></Table.HeaderCell>
-                </Table.Row>
               </Table.Header>
 
               <Table.Body>
@@ -34,23 +31,29 @@ const UserPageNewsfeed = props => {
                     <Table celled structured>
                       <Table.Body>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h2>Following</h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h3>Top How-tos</h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h2>Message Boards</h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h3>Following</h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h2><Link to='/dashboard'>My Account</Link></h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h3>Message Boards</h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h2><Link to='/createpost'>Create a How-to</Link></h2></Table.Cell>
+                          <Table.Cell textAlign='center'><h3><Link to='/dashboard'>My Account</Link></h3></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell textAlign='center'><h3><Link to='/createpost'>Create a How-to</Link></h3></Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                            <Table.Cell textAlign='center'><h3>Search</h3><Search input={{ icon: 'search', iconPosition: 'left' }} /></Table.Cell>
                         </Table.Row>
                       </Table.Body>
                     </Table>
                   </Table.Cell>
                   <Table.Cell>
-                    {guides.map(guide=>
-                      <HowToCard key={guide.id} guide={guide} />
+                    {guides.map((guide, i)=>
+                      <HowToCard key={guide.id} guide={guide} type={'newsfeed'} i={i} history={props.history}/>
                     )}
                   </Table.Cell>
                 </Table.Row>                
