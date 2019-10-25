@@ -13,7 +13,7 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 const CreateHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
-  console.log('CreateHowTo:', user)
+
   const initialValue = {
     user_id: user.id,
     type: user.type,
@@ -37,7 +37,6 @@ const CreateHowTo = props => {
 
     setNewHowTo({
       ...newHowTo,
-      user_id: user.id,
       [e.target.name]: value
     });
   };
@@ -51,7 +50,7 @@ const CreateHowTo = props => {
         setGuides([...guides, newHowTo]);
         props.history.push("/userpagenewsfeed");
       })
-      .catch(err => console.log(guides, newHowTo, err));
+      .catch(err => console.log(err));
   };
 
   //Adds another key/value pair to the how-to object

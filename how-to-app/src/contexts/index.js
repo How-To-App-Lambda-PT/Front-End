@@ -3,11 +3,11 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const UserContext = createContext();
 
-const currentUser = localStorage.user
+const currentUser = JSON.parse(localStorage.user)
 
 export const UserProvider = props => {
   const [user, setUser] = useState(currentUser || {});
-  console.log('UserProvider:', user)
+  console.log('UserProvider: user=', user)
 
   return (
     <UserContext.Provider value={[user, setUser]}>
