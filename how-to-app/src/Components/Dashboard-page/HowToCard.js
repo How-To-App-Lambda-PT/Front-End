@@ -20,10 +20,10 @@ const HowToCard = props => {
 
 
   const linkHandler = () => {
-    localStorage.setItem('guideId', guide.id)
+    localStorage.setItem('guideId', props.id)
   }
 
-  if(props.type == 'newsfeeds'){
+  if(props.type == 'newsfeed'){
     return (
       <Table className='newsfeed_how_to_card'>
         <Table.Row>
@@ -94,7 +94,7 @@ const HowToCard = props => {
         </Table.Row>
       </Table>
     )
-  } else if(props.type == 'newsfeed'){
+  } else if(props.type == 'account'){
     return(
       <Card />
     )

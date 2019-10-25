@@ -23,6 +23,9 @@ const SearchField = props => {
     setFilters([...filters, values.searchValue])
     const filteredResults = guides.filter(guide => guide.title.includes(values.searchValue))
     setGuides(filteredResults)
+    localStorage.setItem('searchTerm', values.searchValue)
+    localStorage.setItem('guides', JSON.stringify(filteredResults))
+    console.log('searchHandler:', filteredResults)
     props.history.push('/searchresults')
   }
 

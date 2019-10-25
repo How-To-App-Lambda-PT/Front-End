@@ -5,6 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Table, Search } from 'semantic-ui-react';
 import Header from '../Header'
+import HowToCardList from '../Dashboard-page/HowToCardList';
 
 
 const UserPageNewsfeed = props => {    
@@ -12,7 +13,7 @@ const UserPageNewsfeed = props => {
     const [user] = useContext(UserContext);
 
 
-        if(guides==undefined){
+        if(!guides){
             return <h2>loading...</h2>
         }
         return(
@@ -52,9 +53,16 @@ const UserPageNewsfeed = props => {
                     </Table>
                   </Table.Cell>
                   <Table.Cell>
+<<<<<<< HEAD
                     {guides.map((guide, i)=>
                       <HowToCard key={guide.id} guide={guide} type={'newsfeed'} i={i} history={props.history}/>
                     )}
+=======
+                    {/* {guides.map(guide=>
+                      <HowToCard key={guide.id} guide={guide} />
+                    )} */}
+                    <HowToCardList rows={1}/>
+>>>>>>> 5c0296506929da711af0c85b23ffdfbc452d1faf
                   </Table.Cell>
                 </Table.Row>                
               </Table.Body>  

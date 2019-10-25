@@ -39,6 +39,7 @@ const SignIn = props => {
               axios
                 .post(`https://bw-how-to.herokuapp.com/login`, values)
                 .then(res => {
+                  console.log('SignIn: POST: res.data=', res.data)
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data));
                   setUsers(res.data);
@@ -111,7 +112,7 @@ const SignIn = props => {
           </Formik>
         </div>
         <div>
-          <Link to='/CreateAccount/CreateAccount'>
+          <Link to='/createAccount'>
             <Button>Sign Up!</Button>
           </Link>
         </div>

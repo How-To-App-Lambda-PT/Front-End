@@ -1,5 +1,5 @@
 //basic library/framework imports
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Container, Form, Label, FormGroup, Input } from "reactstrap";
 import Header from "../Header";
@@ -13,21 +13,19 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 const CreateHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
+  console.log('EditHowTo:', user)
 
-  const initialValue = {
-    user_id: user.id,
-    type: user.type,
-    title: "",
-    description: "Things you should know",
-    step_1: ""
-  };
+  const  = { guide };
 
-  const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
+  const [guideToEdit, setNewHowTo] = useState(guideToEdit); //State for the New how-to object
  
   const [guides, setGuides] = useContext(GuidesContext);
-  
+
   let [steps, setSteps] = useState([1]); //variable to add more steps
 
+  useEffect(() => { 
+    axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides/${localStorage.guideId}`)
+  }, [])
 
 
   //Handles the Change that is made the values
@@ -38,6 +36,7 @@ const CreateHowTo = props => {
 
     setNewHowTo({
       ...newHowTo,
+      user_id: user.id,
       [e.target.name]: value
     });
   };
@@ -46,20 +45,12 @@ const CreateHowTo = props => {
   const HandleSubmit = e => {
     e.preventDefault();
 
-    const duplicateTitle = guides.map(guide => guide.title == newHowTo.title).includes(true)
-
-    if (!duplicateTitle) {
-
-      axiosWithAuth("post", "https://bw-how-to.herokuapp.com/guides", newHowTo)
-        .then(res => {
-          setGuides([...guides, newHowTo]);
-          props.history.push("/userpagenewsfeed");
-        })
-        .catch(err => console.log('CreateHowTo: newHowTo=', newHowTo, 'guides=', guides, err));
-    } else {
-      //TODO: make better response to a duplicate title
-      console.log('Guide already exists with that title')
-    }
+    axiosWithAuth("put", `https://bw-how-to.herokuapp.com/guides/${guide.id}`, newHowTo)
+      .then(() => {
+        setGuides([...guides, newHowTo]);
+        props.history.push(`/guide/${guide.id}`);
+      })
+      .catch(err => console.log(guides, newHowTo, err));
   };
 
   //Adds another key/value pair to the how-to object

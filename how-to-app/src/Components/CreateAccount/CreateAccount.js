@@ -1,60 +1,91 @@
+import { Container, Button, FormGroup, Label } from "reactstrap";
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import { withFormik, Field } from "formik";
+import { withFormik, Field, Form } from "formik";
 import * as Yup from "yup";
-import Header from '../Header';
-import './CreateAccount.css';
+import axios from 'axios';
+import './CreateAccount.css'
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
+// import '../../App.css';
 
-function CreateAccount({errors, touched}) {
+function CreateAccount({errors, touched, values,}, props) {
   return (
 
-    <Form>
-      <div className='email'>
-        {touched.email && errors.email && <p>{errors.email}</p>} 
-          <Label>Email</Label>
-            <Field type="text" name="email" />
-      </div>
+    <Container className="super-cont">
+      <header className="login-header">
+       <h4 className="login-logo">How-To</h4>
+      </header>
 
-      <div className='password'>
-        {touched.password && errors.password && <p>{errors.password}</p>}
-          <Label>Password</Label>
-            <Field type="text" name="password" />
-      </div>
+      <Container className="login-cont">
 
-      <div className='verifyPassword'>
-        <Label>Verify Password</Label>
-          <Field type="text" name="verifyPassword" />
-      </div>
-   
-      <div className='submit'>
-        <Button>Submit</Button>
-      </div>
-    </Form>
+        <Form>
+          <div className='email'>
+            {/* {touched.email && errors.email && <p>{errors.email}</p>}  */}
+              <Label>Username</Label>
+                <Field type="text" name="username" />
+          </div>
+
+          <div className='password'>
+            {touched.password && errors.password && <p>{errors.password}</p>}
+              <Label>Password</Label>
+                <Field type="password" name="password" />
+          </div>
+
+          <div className='verifyPassword'>
+            <Label>Verify Password</Label>
+              <Field type="password" name="verifyPassword" />
+          </div>
+      
+          <div className='submit'>
+            <Link to='../Dashboard-page/Dashboard.js'>
+              <Button type='submit'>Submit</Button> 
+            </Link>             
+          </div>
+        </Form>
+
+      </Container>
+
+    </Container>
   ); 
 }
 
 const FormikCreateAccount = withFormik({
-  mapPropsToValues({ email, password, verifyPassword }) {
+  mapPropsToValues({ username, password, verifyPassword, values, props }) {
+    console.log(values);
     return {
-      email: email || "",
+      username: username || "",
       password: password || "",
       verifyPassword: verifyPassword || ""
+      // history: props.history
     };
   },
 
   validationSchema: Yup.object().shape({
-    email: Yup.string()
-      .email()
-      .required(),
+    // email: Yup.string()
+    //   .email()
+    //   .required(),
     password: Yup.string()
       .min(6)
       .required()
   }),
 
-  handleSubmit(values) {
-    console.log(values);
-  }
+  handleSubmit: (values) => {
+    const body = {
+      "username": values.username,
+      "password": values.password, 
+      "type": "creator"
+    }
+    axios
+      .post("https://bw-how-to.herokuapp.com/register", body)
+      .then(res => {
+        console.log(res, values)
+        // const jwtToken = res.data.token,
+        localStorage.setItem("token", res.data.token)
+        localStorage.setItem("user", res.data.id)
+        // props.history.push("/userpagenewsfeed")
+      })
+      .catch(err => console.log(err, values));
+  },
 })(CreateAccount);
 
 export default FormikCreateAccount;
