@@ -8,18 +8,12 @@ const HowToCardList = props => {
   // console.log('HowToCardList:', guides)
   const guidesList = () => {
     return (
-      guides.map(guide => {
+      guides.map((guide, i) => {
         return <HowToCard
-<<<<<<< HEAD
+          i={i}
           key={guide.id} 
           guide={guide}
           type={'searchResult'}
-=======
-          key={guide.id}
-          title={guide.title}
-          description={guide.description}
-          id={guide.id}
->>>>>>> 5c0296506929da711af0c85b23ffdfbc452d1faf
         />;        
       })
     );
