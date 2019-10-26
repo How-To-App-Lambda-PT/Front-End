@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Form, Segment } from 'semantic-ui-react'
+import { Form } from 'semantic-ui-react'
 
 import { useFormInput } from '../../utils/hooks';
 import { GuidesContext } from '../../contexts/index';

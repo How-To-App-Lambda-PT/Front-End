@@ -61,11 +61,15 @@ const UserPageNewsfeed = props => {
                     </Table>
                   </Table.Cell>
                   <Table.Cell>
-                    {guides.map(guide=>
-                     <Link to={`/guides/${guide.id}`}>
-                      <HowToCard key={guide.id} guide={guide} type={'newsfeed'} history={props.history}/>
-                     </Link>
-                    )}
+                    <Table>
+                      <Table.Body>
+                        {guides.map(guide=>
+                        //  <Link to={`/guides/${guide.id}`}>
+                          <HowToCard key={guide.id} guide={guide} type={'newsfeed'} history={props.history}/>
+                        //  </Link>
+                          )}
+                      </Table.Body>
+                    </Table>
                   </Table.Cell>
                 </Table.Row>                
               </Table.Body>  
