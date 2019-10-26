@@ -34,17 +34,15 @@ const Dashboard = props => {
         size='small'
         avatar={true}
        />
-       </Table.Cell>
-       <Table.Cell textAlign='left'>
-         <h1>{user.username}</h1>
+         {user.username}
        </Table.Cell>
      </Table.Row>
 
      <Table.Row>
        <Table.Cell textAlign="left">
          <span>Find a How-to</span>
-       </Table.Cell>
-       <Table.Cell collapsing={true} textAlign='left'>
+       {/* </Table.Cell>
+       <Table.Cell collapsing={true} textAlign='left'> */}
        <SearchField history={props.history} />
        </Table.Cell>
        <Table.Cell collapsing={true} textAlign='right'>
