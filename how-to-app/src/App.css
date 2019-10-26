@@ -301,18 +301,6 @@
   margin-left: -120px;
 }
 
-.nav_top{
-
-  border-top : .5px solid silver !important;
-  
-}
-
-.ui.table{
-
-  border: none !important;
-
-}
-
 .newsfeed_how_to_card{
 
   background-color: #E3C291 !important;
@@ -328,4 +316,13 @@
 .search_res{
 
   margin: 1% 0% 3% 0%;
+
+}
+
+p{
+  margin:0px !important;
+}
+
+.green{
+  color:#346F2F !important;
 }

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Card, Image, Table } from 'semantic-ui-react'
+import { Card, Image, Table, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { UserContext } from '../../contexts/index'
@@ -38,14 +38,14 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell verticalAlign='bottom'>
-            <p>Tried it: 0</p>
-            <p>Category: {guide.type}</p>
-            <p>Difficulty: Easy</p>
-            <p>Creator: {guide.username}</p>
+            <p><span className='green'>Tried it:</span> <span> 0</span></p>
+            <p><span className='green'>Category:</span> <span> {guide.type}</span></p>
+            <p><span className='green'>Difficulty:</span> <span> Easy</span></p>
+            <p><span className='green'>Creator:</span> <span> {guide.username}</span></p>
           </Table.Cell>
           
           <Table.Cell verticalAlign='top' textAlign='left'>
-              <Table.Row><Table.Cell><h2>{guide.title}</h2></Table.Cell></Table.Row>
+              <Table.Row><Table.Cell><h2 className='green'>{guide.title}</h2></Table.Cell></Table.Row>
               <Table.Row>
               <Table.Cell textAlign='center'>
                 <div>
@@ -62,13 +62,14 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign='center'>
-            <button>TRY ME</button>
+            <button >Try me</button>
           </Table.Cell>
         </Table.Row>
       </Table>
     )
   } else if(props.type == 'searchResult'){
     return(
+      // <Link to={`/guides/${props.id}`}>
       <Table>
         <Table.Row className= {(props.i%2) == 1 ? 'markedResult' : ''}>
 
@@ -95,10 +96,50 @@ const HowToCard = props => {
 
         </Table.Row>
       </Table>
+      // </Link>
     )
   } else if(props.type == 'account'){
     return(
-      <Card />
+      <Table className='newsfeed_how_to_card'
+        onClick={linkHandler}
+      >
+        <Table.Row>
+          <Table.Cell collapsing={true}>        
+            <Image
+            textAlign='left'
+            size="small"
+            src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
+            />
+          </Table.Cell>
+
+          <Table.Cell verticalAlign='bottom'>
+            <p><span className='green account_card'>Tried it:</span> <span> 0</span></p>
+            <p><span className='green account_card'>Category:</span> <span> {guide.type}</span></p>
+            <p><span className='green account_card'>Difficulty:</span> <span> Easy</span></p>
+            <p><span className='green account_card'>Creator:</span> <span> {guide.username}</span></p>
+          </Table.Cell>
+          
+          <Table.Cell verticalAlign='top' textAlign='left'>
+              <Table.Row><Table.Cell><h4 className='green'>{guide.title}</h4></Table.Cell></Table.Row>
+              <Table.Row>
+              <Table.Cell textAlign='center'>
+                <div>
+                  <StarRatingComponent 
+                    name="rate1" 
+                    editing={false}
+                    starCount={5}
+                    value={4.7}
+                  />
+                </div>
+              </Table.Cell>
+              </Table.Row>
+          </Table.Cell>
+
+          <Table.Cell textAlign='center'>
+            <Button icon='trash' onClick={deleteHowTo}></Button>
+          </Table.Cell>
+        </Table.Row>
+      </Table>
     )
   }
 }
