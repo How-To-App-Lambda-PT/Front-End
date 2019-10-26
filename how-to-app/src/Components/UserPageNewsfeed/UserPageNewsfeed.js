@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GuidesContext, UserContext } from '../../contexts/index'
 import HowToCard from '../Dashboard-page/HowToCard'
 import { Redirect } from 'react-router-dom'
@@ -7,11 +7,18 @@ import { Table, Search } from 'semantic-ui-react';
 import Header from '../Header'
 import HowToCardList from '../Dashboard-page/HowToCardList';
 import SearchField from '../SearchResults/SearchField';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
 const UserPageNewsfeed = props => {    
-    const [guides] = useContext(GuidesContext);
+    const [guides, setGuides] = useContext(GuidesContext);
     const [user] = useContext(UserContext);
+
+  useEffect(() => {
+    axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides`)
+      .then(res => setGuides(res.data))
+      .catch(err => console.log('UserPageNewsfeed: usewEffect: GET: err=', err))
+   }, [])
 
 
         if(!guides){
