@@ -136,6 +136,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign='center'>
+            <Button icon='edit'></Button>
             <Button icon='trash' onClick={deleteHowTo}></Button>
           </Table.Cell>
         </Table.Row>

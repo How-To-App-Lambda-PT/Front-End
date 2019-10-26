@@ -53,7 +53,7 @@ const Dashboard = props => {
      </Table.Row>
 
      <Table.Row>
-       <Link>
+       <Link to='/createpost'>
         <button>Create a new How-to</button>
        </Link>
      </Table.Row>
