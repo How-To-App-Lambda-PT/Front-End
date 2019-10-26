@@ -6,7 +6,9 @@ import { GuidesProvider } from '../../contexts';
 
 const SearchResults = () => {
 
+
   const guides = JSON.parse(localStorage.guides)
+
 
   return (
     <Segment>

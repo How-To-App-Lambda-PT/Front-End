@@ -59,6 +59,7 @@ const CreateHowTo = props => {
     } else {
       //TODO: make better response to a duplicate title
       console.log('Guide already exists with that title')
+      setNewHowTo(initialValue)
     }
   };
 

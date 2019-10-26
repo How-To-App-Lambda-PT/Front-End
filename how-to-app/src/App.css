@@ -5,7 +5,7 @@
 }
 
 .login-header {
-  position: absolute;
+  position       : absolute;
   left           : 0%;
   right          : 0%;
   top            : 0%;
@@ -302,8 +302,8 @@
 }
 
 .newsfeed_how_to_card{
-
   background-color: #E3C291 !important;
+  margin          : 20px !important;
 
 }
 
@@ -313,7 +313,7 @@
 
 }
 
-.search_res{
+.search_res {
 
   margin: 1% 0% 3% 0%;
 
@@ -326,3 +326,4 @@ p{
 .green{
   color:#346F2F !important;
 }
+

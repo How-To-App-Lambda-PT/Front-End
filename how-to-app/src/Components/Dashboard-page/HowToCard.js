@@ -9,9 +9,7 @@ const HowToCard = props => {
   const guide = props.guide
   const [user] = useContext(UserContext);
 
-  console.log(props)
-
-  const deleteHowTo = e => {
+    const deleteHowTo = e => {
     
     axiosWithAuth('delete', `https://bw-how-to.herokuapp.com/guides/${guide.id}`)
     .then(res=>console.log(res))
@@ -63,6 +61,7 @@ const HowToCard = props => {
 
           <Table.Cell textAlign='center'>
             <button >Try me</button>
+
           </Table.Cell>
         </Table.Row>
       </Table>
