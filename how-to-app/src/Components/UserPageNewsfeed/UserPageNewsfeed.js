@@ -33,22 +33,22 @@ const UserPageNewsfeed = props => {
                     <Table celled structured>
                       <Table.Body>
                         <Table.Row>
-                          <Table.Cell textAlign='center' className='nav_top'><h3>Top How-tos</h3></Table.Cell>
+                          <Table.Cell textalign='center' className='nav_top'><h3>Top How-tos</h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h3>Following</h3></Table.Cell>
+                          <Table.Cell textalign='center'><h3>Following</h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h3>Message Boards</h3></Table.Cell>
+                          <Table.Cell textalign='center'><h3>Message Boards</h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h3><Link to='/dashboard'>My Account</Link></h3></Table.Cell>
+                          <Table.Cell textalign='center'><h3><Link to='/dashboard'>My Account</Link></h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                          <Table.Cell textAlign='center'><h3><Link to='/createpost'>Create a How-to</Link></h3></Table.Cell>
+                          <Table.Cell textalign='center'><h3><Link to='/createpost'>Create a How-to</Link></h3></Table.Cell>
                         </Table.Row>
                         <Table.Row>
-                            <Table.Cell textAlign='center'><SearchField history={props.history}/></Table.Cell>
+                            <Table.Cell textalign='center'><SearchField history={props.history}/></Table.Cell>
                         </Table.Row>
                       </Table.Body>
                     </Table>
