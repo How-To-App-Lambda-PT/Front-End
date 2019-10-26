@@ -32,7 +32,6 @@ const SearchField = props => {
         <Form.Input
           onSubmit={searchHandler}
           fluid
-          label='Search'
           name='searchValue'
           placeholder='Search'
           value={values.searchValue}

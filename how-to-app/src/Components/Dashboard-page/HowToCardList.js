@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Card } from "semantic-ui-react";
+import { Link } from 'react-router-dom'
 import { GuidesContext } from "../../contexts/index";
 import HowToCard from "./HowToCard";
 
@@ -9,12 +10,17 @@ const HowToCardList = props => {
   const guidesList = () => {
     return (
       guides.map((guide, i) => {
-        return <HowToCard
+        return (
+        // <Link to={`/guides/${guide.id}`}>
+        <HowToCard
           i={i}
           key={guide.id} 
           guide={guide}
           type={'searchResult'}
-        />;        
+        /> 
+        // </Link> 
+        )
+
       })
     );
   };
