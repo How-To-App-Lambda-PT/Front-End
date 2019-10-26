@@ -66,8 +66,11 @@ const CreateHowTo = props => {
   const addStep = e => {
     e.preventDefault();
 
-    setSteps([...steps, steps.length + 1]);
-
+    if(steps.length == 5){
+      alert('Only a MAXIMUM of 5 steps')
+    } else {
+      setSteps([...steps, steps.length + 1]);
+    }
     const key = `step_${steps.length + 1}`;
 
     setNewHowTo({

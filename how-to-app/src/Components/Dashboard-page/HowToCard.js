@@ -8,8 +8,8 @@ import StarRatingComponent from 'react-star-rating-component'
 const HowToCard = props => {
   const guide = props.guide
   const [user] = useContext(UserContext);
-  console.log(props)
 
+  console.log(props)
 
   const deleteHowTo = e => {
     
@@ -20,12 +20,14 @@ const HowToCard = props => {
 
 
   const linkHandler = () => {
-    localStorage.setItem('guideId', props.id)
+    localStorage.setItem('guideId', props.guide.id)
   }
 
   if(props.type == 'newsfeed'){
     return (
-      <Table className='newsfeed_how_to_card'>
+      <Table className='newsfeed_how_to_card'
+        onClick={linkHandler}
+      >
         <Table.Row>
           <Table.Cell collapsing={true}>        
             <Image
@@ -60,7 +62,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign='center'>
-            {/* <button onClick={props.history.push(`/guides/${guide.id}`)}>Try it</button> */}
+            <button>TRY ME</button>
           </Table.Cell>
         </Table.Row>
       </Table>
