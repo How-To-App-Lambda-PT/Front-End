@@ -17,14 +17,14 @@ const HowToCard = props => {
   }
 
 
-  // const linkHandler = () => {
-  //   localStorage.setItem('guideId', props.guide.id)
-  // }
+  const linkHandler = () => {
+    localStorage.setItem('guideId', props.guide.id)
+  }
 
   if(props.type == 'newsfeed'){
     return (
       <Table className='newsfeed_how_to_card'
-        // onClick={linkHandler}
+        onClick={linkHandler}
       >
         <Table.Row>
           <Table.Cell collapsing={true}>        
