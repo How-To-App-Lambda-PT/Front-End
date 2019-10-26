@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Card, Image, Table } from 'semantic-ui-react'
+import { Card, Image, Table, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { UserContext } from '../../contexts/index'
@@ -9,9 +9,7 @@ const HowToCard = props => {
   const guide = props.guide
   const [user] = useContext(UserContext);
 
-  console.log(props)
-
-  const deleteHowTo = e => {
+    const deleteHowTo = e => {
     
     axiosWithAuth('delete', `https://bw-how-to.herokuapp.com/guides/${guide.id}`)
     .then(res=>console.log(res))
@@ -62,7 +60,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign='center'>
-            <button>TRY ME</button>
+            <Button  to={`/guides/${guide.id}`} as={Link}>TRY ME</Button>
           </Table.Cell>
         </Table.Row>
       </Table>
