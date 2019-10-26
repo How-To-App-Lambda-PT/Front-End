@@ -9,7 +9,7 @@ import { Container, Col, FormGroup, Label, Button } from "reactstrap";
 
 const SignIn = props => {
 
-  const [_, setUsers] = useContext(UserContext);
+  const [_, setUser] = useContext(UserContext);
 
   const initialValues = { username: "", password: "" };
 
@@ -41,7 +41,7 @@ const SignIn = props => {
                   console.log('SignIn: POST: res.data=', res.data)
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data));
-                  setUsers(res.data);
+                  setUser(res.data);
                   setSubmitting(false);
                   resetForm();
                   props.history.push("/userpagenewsfeed");
