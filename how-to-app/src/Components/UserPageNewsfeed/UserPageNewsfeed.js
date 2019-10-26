@@ -29,7 +29,7 @@ const UserPageNewsfeed = props => {
             <Table attached="top" basic>
 
               <Table.Header>
-                  <Table.HeaderCell className='tables'>.</Table.HeaderCell>
+                  <Table.HeaderCell className='tables'></Table.HeaderCell>
                   <Table.HeaderCell className='tables welcome'><h1>Welcome {user.username}</h1></Table.HeaderCell>
               </Table.Header>
 
