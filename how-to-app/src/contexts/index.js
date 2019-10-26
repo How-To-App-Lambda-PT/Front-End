@@ -3,10 +3,10 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const UserContext = createContext();
 
-const currentUser = JSON.parse(localStorage.user) 
+const currentUser = {} 
 
 export const UserProvider = props => {
-  const [user, setUser] = useState(currentUser || {});
+  const [user, setUser] = useState(JSON.parse(localStorage.user) || {});
   console.log('UserProvider: user=', user)
 
   return (
@@ -33,9 +33,10 @@ export const GuidesProvider = props => {
 
   useEffect(() => {
     if (localStorage.user) {
+      
       fetchGuides()
     }
-   }, [])
+   }, [currentUser])
 
 
   return (

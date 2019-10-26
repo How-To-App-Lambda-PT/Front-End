@@ -13,6 +13,7 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 const CreateHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
+  console.log('user=', user)
 
   const initialValue = {
     user_id: user.id,

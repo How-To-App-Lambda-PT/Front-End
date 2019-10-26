@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Form } from 'semantic-ui-react'
 
 import { useFormInput } from '../../utils/hooks';
@@ -7,8 +7,6 @@ import { GuidesContext } from '../../contexts/index';
 const SearchField = props => {
 
   const [guides, setGuides] = useContext(GuidesContext)
-
-  const [filters, setFilters] = useState([]);
 
   const initialValues = {
     searchValue: '',
@@ -19,13 +17,13 @@ const SearchField = props => {
 
   const searchHandler = () => {
 
-    console.log(values)
-    setFilters([...filters, values.searchValue])
     const filteredResults = guides.filter(guide => guide.title.includes(values.searchValue))
+
     setGuides(filteredResults)
+
     localStorage.setItem('searchTerm', values.searchValue)
     localStorage.setItem('guides', JSON.stringify(filteredResults))
-    console.log('searchHandler:', filteredResults)
+    console.log('SearchField: searchHandler: filteredResults=', filteredResults)
     props.history.push('/searchresults')
   }
 
