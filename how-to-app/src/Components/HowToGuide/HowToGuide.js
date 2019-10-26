@@ -20,7 +20,9 @@ const style = {
 
 const HowToGuide = props => {
 
-  const id = localStorage.guideId
+  console.log(props)
+  let id = localStorage.getItem('guideId')
+  console.log(localStorage)
 
   const [guide, setGuide] = useState()
 

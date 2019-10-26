@@ -25,6 +25,7 @@ const CreateHowTo = props => {
   const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
  
   const [guides, setGuides] = useContext(GuidesContext);
+  
   let [steps, setSteps] = useState([1]); //variable to add more steps
 
 
@@ -66,8 +67,11 @@ const CreateHowTo = props => {
   const addStep = e => {
     e.preventDefault();
 
-    setSteps([...steps, steps.length + 1]);
-
+    if(steps.length == 5){
+      alert('Only a MAXIMUM of 5 steps')
+    } else {
+      setSteps([...steps, steps.length + 1]);
+    }
     const key = `step_${steps.length + 1}`;
 
     setNewHowTo({

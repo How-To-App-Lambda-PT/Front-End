@@ -12,7 +12,7 @@ const SearchResults = () => {
 
   return (
     <Segment>
-      <div>{`${guides.length} guides contain the word ${localStorage.searchTerm}`}</div>
+      <div className='search_res'>{`${guides.length} guides contain the word ${localStorage.searchTerm}`}</div>
       <HowToCardList rows={1}/>
     </Segment>
   )

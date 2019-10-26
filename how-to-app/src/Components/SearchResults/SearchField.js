@@ -18,6 +18,8 @@ const SearchField = props => {
   const [values, changeHandler] = useFormInput(initialValues)
 
   const searchHandler = () => {
+
+    console.log(values)
     setFilters([...filters, values.searchValue])
     const filteredResults = guides.filter(guide => guide.title.includes(values.searchValue))
     setGuides(filteredResults)
@@ -28,21 +30,20 @@ const SearchField = props => {
   }
 
   return (
-    <Segment>
-      <Form
-        onSubmit={searchHandler}
-      >
+    <Form onSubmit={searchHandler}>
         <Form.Input
+          onSubmit={searchHandler}
           fluid
           label='Search'
           name='searchValue'
           placeholder='Search'
           value={values.searchValue}
           onChange={changeHandler}
+          icon="search"
+          iconPosition='left'
+
         />
-        <Form.Button>Search Guides</Form.Button>
-      </Form>
-    </Segment>
+        </Form>
   )
 }
 
