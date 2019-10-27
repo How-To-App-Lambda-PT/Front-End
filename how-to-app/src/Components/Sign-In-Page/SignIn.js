@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { Redirect, Link } from 'react-router-dom';
-import { Segment } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../../contexts/index";
 import * as Yup from "yup";
@@ -9,8 +8,7 @@ import Error from "./Error";
 import { Container, Col, FormGroup, Label, Button } from "reactstrap";
 
 const SignIn = props => {
-
-  const [_, setUsers] = useContext(UserContext);
+  const [_, setUser] = useContext(UserContext);
 
   const initialValues = { username: "", password: "" };
 
@@ -22,7 +20,6 @@ const SignIn = props => {
       .min(8, "Password is too short, must be at least 8 characters")
       .required("Please enter a password")
   });
-
 
   return (
     <Container className="super-cont">
@@ -39,10 +36,10 @@ const SignIn = props => {
               axios
                 .post(`https://bw-how-to.herokuapp.com/login`, values)
                 .then(res => {
-                  console.log('SignIn: POST: res.data=', res.data)
+                  console.log("SignIn: POST: res.data=", res.data);
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data));
-                  setUsers(res.data);
+                  setUser(res.data);
                   setSubmitting(false);
                   resetForm();
                   props.history.push("/userpagenewsfeed");
@@ -84,6 +81,7 @@ const SignIn = props => {
                     <Label className="user-label" htmlFor="password">
                       Password
                     </Label>
+
                     <Field
                       type="password"
                       onBlur={handleBlur}
@@ -97,6 +95,12 @@ const SignIn = props => {
                       message={errors.password}
                     />
                   </FormGroup>
+                  <div>
+                    <Link to="/createAccount">
+                      Don't have an account?{" "}
+                      <span className="sign-txt">Sign Up!</span>
+                    </Link>
+                  </div>
                 </Col>
                 <div className="button-div">
                   <Button
