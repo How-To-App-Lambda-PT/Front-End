@@ -15,6 +15,7 @@ import SearchResults from './Components/SearchResults/SearchResults';
 import HowToGuide from './Components/HowToGuide/HowToGuide';
 import UserPageNewsfeed from './Components/UserPageNewsfeed/UserPageNewsfeed'
 import Header from "./Components/Header";
+import EditHowTo from './Components/EditHowTo/EditHowTo';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <PrivateRoute path="/searchresults" component={SearchResults} />
       <PrivateRoute path='/userpagenewsfeed' component={UserPageNewsfeed} />
       <PrivateRoute path="/guides/:id" component={HowToGuide} />
+      <PrivateRoute path="/editguide" component={EditHowTo} />
     </div>
   );
 }

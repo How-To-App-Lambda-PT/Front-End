@@ -10,21 +10,22 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 //initial value for the NEW how to object
 
 
-const CreateHowTo = props => {
+const EditHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
-  console.log('EditHowTo:', user)
-
-  const  = { guide };
-
-  const [guideToEdit, setNewHowTo] = useState(guideToEdit); //State for the New how-to object
- 
+  console.log('EditHowTo:', user) 
   const [guides, setGuides] = useContext(GuidesContext);
+
+  const guide = guides[0].filter(guide => guide.id == localStorage.guideId);
+
+  const [guideToEdit, setGuideToEdit] = useState(guide); //State for the New how-to object
 
   let [steps, setSteps] = useState([1]); //variable to add more steps
 
   useEffect(() => { 
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides/${localStorage.guideId}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log('EditHowTo: useEffect: GET: err=', err))
   }, [])
 
 
@@ -34,8 +35,8 @@ const CreateHowTo = props => {
 
     let value = e.target.value;
 
-    setNewHowTo({
-      ...newHowTo,
+    setGuideToEdit({
+      ...guideToEdit,
       user_id: user.id,
       [e.target.name]: value
     });
@@ -45,12 +46,12 @@ const CreateHowTo = props => {
   const HandleSubmit = e => {
     e.preventDefault();
 
-    axiosWithAuth("put", `https://bw-how-to.herokuapp.com/guides/${guide.id}`, newHowTo)
+    axiosWithAuth("put", `https://bw-how-to.herokuapp.com/guides/${guide.id}`, guideToEdit)
       .then(() => {
-        setGuides([...guides, newHowTo]);
+        setGuides([...guides, guideToEdit]);
         props.history.push(`/guide/${guide.id}`);
       })
-      .catch(err => console.log(guides, newHowTo, err));
+      .catch(err => console.log(guides, guideToEdit, err));
   };
 
   //Adds another key/value pair to the how-to object
@@ -61,8 +62,8 @@ const CreateHowTo = props => {
 
     const key = `step_${steps.length + 1}`;
 
-    setNewHowTo({
-      ...newHowTo,
+    setGuideToEdit({
+      ...guideToEdit,
       [key]: ""
     });
   };
@@ -83,7 +84,7 @@ const CreateHowTo = props => {
                 className="ht-title-input"
                 name="title"
                 type="text"
-                value={newHowTo.title}
+                value={guideToEdit.title}
                 onChange={HandleChange}
               />
             </div>
@@ -133,7 +134,7 @@ const CreateHowTo = props => {
                 className="ht-step-input"
                 name={`step_${step}`}
                 type="textarea"
-                value={newHowTo[`step_${step}`]}
+                value={guideToEdit[`step_${step}`]}
                 onChange={HandleChange}
               />
             </FormGroup>
@@ -149,4 +150,4 @@ const CreateHowTo = props => {
     );
 };
 
-export default CreateHowTo;
+export default EditHowTo;
