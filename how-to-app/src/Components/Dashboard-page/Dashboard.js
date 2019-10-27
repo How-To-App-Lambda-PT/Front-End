@@ -41,8 +41,6 @@ const Dashboard = props => {
      <Table.Row>
        <Table.Cell textAlign="left">
          <span>Find a How-to</span>
-       {/* </Table.Cell>
-       <Table.Cell collapsing={true} textAlign='left'> */}
        <SearchField history={props.history} />
        </Table.Cell>
        <Table.Cell collapsing={true} textAlign='right'>
