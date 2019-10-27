@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { GuidesContext, UserContext } from '../../contexts/index'
 import HowToCard from '../Dashboard-page/HowToCard'
-import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Table } from 'semantic-ui-react';
 import Header from '../Header'
@@ -10,6 +9,7 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
 const UserPageNewsfeed = props => {    
+  
     const [guides, setGuides] = useContext(GuidesContext);
     const [user] = useContext(UserContext);
 

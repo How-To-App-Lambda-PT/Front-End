@@ -9,7 +9,7 @@ const HowToCard = props => {
   const guide = props.guide
   const [user] = useContext(UserContext);
 
-    const deleteHowTo = e => {
+  const deleteHowTo = e => {
     
     axiosWithAuth('delete', `https://bw-how-to.herokuapp.com/guides/${guide.id}`)
     .then(res=>console.log(res))
@@ -47,12 +47,13 @@ const HowToCard = props => {
               <Table.Row>
               <Table.Cell textAlign='center'>
                 <div>
-                  <h2><StarRatingComponent 
+                  <h2>
+                    <StarRatingComponent 
                     name="rate1" 
                     editing={false}
                     starCount={5}
                     value={4.7}
-                  />
+                    />
                   </h2>
                 </div>
               </Table.Cell>
@@ -66,12 +67,10 @@ const HowToCard = props => {
         </Table.Row>
       </Table>
     )
-  } else if(props.type == 'searchResult'){
+  } else if( props.type == 'searchResult' ){
     return(
-      // <Link to={`/guides/${props.id}`}>
       <Table>
         <Table.Row className= {(props.i%2) == 1 ? 'markedResult' : ''}>
-
           <Table.Cell width='7'>
             {guide.title}
           </Table.Cell>
@@ -92,14 +91,13 @@ const HowToCard = props => {
           <Table.Cell textAlign='right'>
             <p>Tried: 64 times</p>
           </Table.Cell>
-
         </Table.Row>
       </Table>
-      // </Link>
     )
   } else if(props.type == 'account'){
     return(
-      <Table className='newsfeed_how_to_card'
+      <Table 
+        className='newsfeed_how_to_card'
         onClick={linkHandler}
       >
         <Table.Row>
@@ -121,16 +119,16 @@ const HowToCard = props => {
           <Table.Cell verticalAlign='top' textAlign='left'>
               <Table.Row><Table.Cell><h4 className='green'>{guide.title}</h4></Table.Cell></Table.Row>
               <Table.Row>
-              <Table.Cell textAlign='center'>
-                <div>
-                  <StarRatingComponent 
-                    name="rate1" 
-                    editing={false}
-                    starCount={5}
-                    value={4.7}
-                  />
-                </div>
-              </Table.Cell>
+                <Table.Cell textAlign='center'>
+                  <div>
+                    <StarRatingComponent 
+                      name="rate1" 
+                      editing={false}
+                      starCount={5}
+                      value={4.7}
+                    />
+                  </div>
+                </Table.Cell>
               </Table.Row>
           </Table.Cell>
 
