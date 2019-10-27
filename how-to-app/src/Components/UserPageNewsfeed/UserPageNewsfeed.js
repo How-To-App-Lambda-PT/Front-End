@@ -16,7 +16,7 @@ const UserPageNewsfeed = props => {
   useEffect(() => {
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides`)
       .then(res => setGuides(res.data))
-      .catch(err => console.log('UserPageNewsfeed: usewEffect: GET: err=', err))
+      .catch(err => console.log('UserPageNewsfeed: useEffect: GET: err=', err))
    }, [])
 
 

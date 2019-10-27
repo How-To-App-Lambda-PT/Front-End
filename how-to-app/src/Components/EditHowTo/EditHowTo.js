@@ -13,7 +13,7 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 const EditHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
-  console.log('EditHowTo:', user) 
+  console.log('EditHowTo: user=', user) 
   const [guides, setGuides] = useContext(GuidesContext);
 
   const [guideToEdit, setGuideToEdit] = useState({}); //State for the New how-to object

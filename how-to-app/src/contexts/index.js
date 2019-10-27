@@ -1,10 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+const currentUser = localStorage.user
+
 export const UserContext = createContext();
 
 export const UserProvider = props => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(currentUser || {});
   console.log('UserProvider: user=', user)
 
   return (
@@ -17,25 +19,7 @@ export const UserProvider = props => {
 export const GuidesContext = createContext();
 
 export const GuidesProvider = props => {
-  const [guides, setGuides] = useState();
-  
-  function fetchGuides() {
-      axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides`)
-         .then(res => {
-           console.log("GuidesProvider: GET:", res.data);
-           setGuides(res.data);
-           localStorage.setItem('guides', JSON.stringify(res.data))
-         })
-         .catch(err => console.log("contexts: index: GuidesProvider: GET:", err));
-  }
-
-  useEffect(() => {
-    if (localStorage.user) {
-      
-      fetchGuides()
-    }
-   }, [])
-
+  const [guides, setGuides] = useState()
 
   return (
     <GuidesContext.Provider value={[guides, setGuides]}>
