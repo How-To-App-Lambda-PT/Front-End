@@ -16,7 +16,7 @@ const CreateHowTo = props => {
 
   const initialValue = {
     user_id: user.id,
-    type: user.type,
+    type: user.id,
     title: "",
     description: "Things you should know",
     step_1: ""
@@ -109,7 +109,7 @@ const CreateHowTo = props => {
                 className="ht-title-input"
                 type="select"
                 name="category"
-                // onChange={HandleChange}
+                onChange={HandleChange}
               >
                 <option value="selected"></option>
                 <option className="ht-options" value="cars">

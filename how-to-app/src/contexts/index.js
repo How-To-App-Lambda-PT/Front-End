@@ -19,11 +19,14 @@ export const GuidesContext = createContext();
 
 export const GuidesProvider = props => {
   const [guides, setGuides] = useState([])
-  console.log('GuidesProvider: guides=', guides)
+  const [editing, setEditing] = useState(false)
+  console.log('GuidesProvider: guides=', guides, 'editing=', editing)
 
   return (
-    <GuidesContext.Provider value={[guides, setGuides]}>
+    <GuidesContext.Provider value={[guides, setGuides, editing, setEditing]}>
       {props.children}
     </GuidesContext.Provider>
   );
 };
+
+

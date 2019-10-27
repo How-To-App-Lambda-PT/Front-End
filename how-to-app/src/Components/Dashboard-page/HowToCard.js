@@ -8,6 +8,7 @@ import StarRatingComponent from "react-star-rating-component";
 const HowToCard = props => {
   const guide = props.guide;
   const [user] = useContext(UserContext);
+  console.log('HowTo: guide;', guide.id)
 
   const deleteHowTo = e => {
     axiosWithAuth(

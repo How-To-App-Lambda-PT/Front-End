@@ -21,12 +21,15 @@ const style = {
 
 const HowToGuide = props => {
   let id = localStorage.getItem("guideId");
-
+  console.log(props.match.params.id, props.name)
   const [guide, setGuide] = useState();
 
   useEffect(() => {
     axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides/${id}`)
-      .then(res => setGuide(res.data[0]))
+      .then(res => {
+        console.log('HowTo:', res.data)
+        setGuide(res.data[0])
+      })
       .catch(err => console.log("HowToGuide: useEffect: GET:", err));
   }, []);
 
