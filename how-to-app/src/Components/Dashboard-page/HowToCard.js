@@ -81,11 +81,9 @@ const HowToCard = props => {
     );
   } else if (props.type == "searchResult") {
     return (
-      // <Link to={`/guides/${props.id}`}>
       <Table>
         <Table.Row className={props.i % 2 == 1 ? "markedResult" : ""}>
           <Table.Cell width="7">{guide.title}</Table.Cell>
-
           <Table.Cell>
             <div>
               <h2>
@@ -104,7 +102,6 @@ const HowToCard = props => {
           </Table.Cell>
         </Table.Row>
       </Table>
-      // </Link>
     );
   } else if (props.type == "account") {
     return (
@@ -136,7 +133,6 @@ const HowToCard = props => {
               <span> {guide.username}</span>
             </p>
           </Table.Cell>
-
           <Table.Cell verticalAlign="top" textAlign="left">
             <Table.Row>
               <Table.Cell>

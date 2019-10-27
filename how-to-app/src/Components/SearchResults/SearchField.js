@@ -38,7 +38,6 @@ const SearchField = props => {
           onChange={changeHandler}
           icon="search"
           iconPosition='left'
-
         />
         </Form>
   )

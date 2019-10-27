@@ -19,6 +19,7 @@ const Dashboard = props => {
 
   console.log(guides);
 
+
   if (guides == undefined) {
     return <h2>loading...</h2>;
   } else {
@@ -36,7 +37,6 @@ const Dashboard = props => {
             {user.username}
           </Table.Cell>
         </Table.Row>
-
         <Table.Row>
           <Table.Cell textAlign="left">
             <span>Find a How-to</span>
