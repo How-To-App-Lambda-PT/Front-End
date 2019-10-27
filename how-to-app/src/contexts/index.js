@@ -1,11 +1,10 @@
 import React, { createContext, useState, useEffect } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const currentUser = localStorage.user
 
 export const UserContext = createContext();
 
 export const UserProvider = props => {
+  const currentUser = localStorage.user
   const [user, setUser] = useState(currentUser || {});
   console.log('UserProvider: user=', user)
 
@@ -19,7 +18,8 @@ export const UserProvider = props => {
 export const GuidesContext = createContext();
 
 export const GuidesProvider = props => {
-  const [guides, setGuides] = useState()
+  const [guides, setGuides] = useState([])
+  console.log('GuidesProvider: guides=', guides)
 
   return (
     <GuidesContext.Provider value={[guides, setGuides]}>
