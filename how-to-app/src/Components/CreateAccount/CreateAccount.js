@@ -21,24 +21,30 @@ function CreateAccount({errors, touched, values,}, props) {
         <Form>
           <div className='email'>
             {/* {touched.email && errors.email && <p>{errors.email}</p>}  */}
-              <Label>Username</Label>
-                <Field type="text" name="username" />
+              <Label>Email</Label>
+          </div>
+          <div>
+            <Field type="email" name="username" />
           </div>
 
           <div className='password'>
             {touched.password && errors.password && <p>{errors.password}</p>}
               <Label>Password</Label>
-                <Field type="password" name="password" />
+          </div>
+          <div>
+            <Field type="password" name="password" />
           </div>
 
           <div className='verifyPassword'>
             <Label>Verify Password</Label>
-              <Field type="password" name="verifyPassword" />
+          </div>
+          <div>
+            <Field type="password" name="verifyPassword" />
           </div>
       
-          <div className='submit'>
+          <div className="button-div">
             <Link to='../Dashboard-page/Dashboard.js'>
-              <Button type='submit'>Submit</Button> 
+              <Button className="login-button" type="submit">Submit</Button> 
             </Link>             
           </div>
         </Form>
