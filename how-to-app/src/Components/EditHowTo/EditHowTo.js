@@ -10,69 +10,92 @@ import { UserContext, GuidesContext } from "../../contexts/index";
 //initial value for the NEW how to object
 
 
-const CreateHowTo = props => {
+const EditHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
-  console.log('EditHowTo:', user)
+  console.log('EditHowTo: user=', user)
+  const [guides, setGuides, editing, setEditing] = useContext(GuidesContext);
 
-  const  = { guide };
+  const [guideToEdit, setGuideToEdit] = useState({}); //State for the New how-to object
+  console.log('GuideToEdit=', guideToEdit)
 
-  const [guideToEdit, setNewHowTo] = useState(guideToEdit); //State for the New how-to object
- 
-  const [guides, setGuides] = useContext(GuidesContext);
+  // const [steps, setSteps] = useState([]); //variable to add more steps
 
-  let [steps, setSteps] = useState([1]); //variable to add more steps
+  // const convertStepsToArray = guideObj => {
+  //   let stepArr = []
+    
+    
+  //   console.log('convertStepsToArray: stepArr=', stepArr)
+  //   return stepArr
+  // }
 
-  useEffect(() => { 
+  useEffect(() => {
+
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides/${localStorage.guideId}`)
+      .then(res => {
+        console.log('EditHowTo: useEffect: GET: res.data=', res.data)
+        setGuideToEdit(res.data[0])
+        // setSteps(convertStepsToArray(res.data[0]))
+        setEditing(!editing)
+      })
+      .catch(err => console.log('EditHowTo: useEffect: GET: guideId=', localStorage.guideId, 'err=', err))
+
   }, [])
 
 
   //Handles the Change that is made the values
   const HandleChange = e => {
     e.persist();
-
+    console.log('EditHowTo: HandleChange: target.name: target.value=', { [e.target.name]: e.target.value }, ', guideToEdit=', guideToEdit)
     let value = e.target.value;
 
-    setNewHowTo({
-      ...newHowTo,
-      user_id: user.id,
+    setGuideToEdit({
+      ...guideToEdit,
       [e.target.name]: value
     });
+    
   };
 
   //Handles the form when it is ready to be sent to the server
   const HandleSubmit = e => {
     e.preventDefault();
+    guideToEdit.user_id = JSON.parse(user).id
+    let newObj = {}
+      for(let key in guideToEdit) {
+        if (key !== 'username') {
+          newObj[key] = guideToEdit[key]
+    }
+  }
 
-    axiosWithAuth("put", `https://bw-how-to.herokuapp.com/guides/${guide.id}`, newHowTo)
-      .then(() => {
-        setGuides([...guides, newHowTo]);
-        props.history.push(`/guide/${guide.id}`);
+    axiosWithAuth("put", `https://bw-how-to.herokuapp.com/guides/${newObj.id}`, newObj)
+      .then(res => {
+        // setGuides([...guides, newObj]);
+        props.history.push(`/guide/${newObj.id}`);
+        console.log(res.data)
       })
-      .catch(err => console.log(guides, newHowTo, err));
+      .catch(err => console.log(guides, guideToEdit, err));
   };
 
-  //Adds another key/value pair to the how-to object
-  const addStep = e => {
-    e.preventDefault();
+  // //Adds another key/value pair to the how-to object
+  // const addStep = e => {
+  //   e.preventDefault();
 
-    setSteps([...steps, steps.length + 1]);
+  //   setSteps([...steps, steps.length + 1]);
 
-    const key = `step_${steps.length + 1}`;
+  //   const key = `step_${steps.length + 1}`;
 
-    setNewHowTo({
-      ...newHowTo,
-      [key]: ""
-    });
-  };
+  //   setGuideToEdit({
+  //     ...guideToEdit,
+  //     [key]: ""
+  //   });
+  // };
 
   // if (user.type === "creator") {
     //   the form where data will be inputed
     return (
       <Container className="create-how-to-cont">
         <Header />
-        <h3 className="create-how-to-text">Create a How-To</h3>
+        <h3 className="create-how-to-text">Edit How-To Guide</h3>
         <Form className="create-how-to-form" onSubmit={HandleSubmit}>
           <FormGroup className="how-to-title-category">
             <div className="title-ht">
@@ -83,7 +106,7 @@ const CreateHowTo = props => {
                 className="ht-title-input"
                 name="title"
                 type="text"
-                value={newHowTo.title}
+                value={guideToEdit.title}
                 onChange={HandleChange}
               />
             </div>
@@ -95,10 +118,10 @@ const CreateHowTo = props => {
               <Input
                 className="ht-title-input"
                 type="select"
-                name="category"
-                // onChange={HandleChange}
+                name="type"
+                onChange={HandleChange}                
               >
-                <option value="selected"></option>
+                <option value={guideToEdit.type}></option>
                 <option className="ht-options" value="cars">
                   Cars and Other Vehices
                 </option>
@@ -123,24 +146,89 @@ const CreateHowTo = props => {
               </Input>
             </div>
           </FormGroup>
-          {steps.map(step => (
-            <FormGroup key={step} className="how-to-steps">
+          {/* {steps.map((step, i) => (
+            <FormGroup key={i+1} className="how-to-steps">
               <Label
                 className="ht-steps-text"
-                for={`step_${step}`}
-              >{`Step ${step}`}</Label>
+                for={`step_${i+1}`}
+              >{`Step ${i+1}`}</Label>
               <Input
                 className="ht-step-input"
-                name={`step_${step}`}
+                name={`step_${i+1}`}
                 type="textarea"
-                value={newHowTo[`step_${step}`]}
+                value={step}
                 onChange={HandleChange}
               />
             </FormGroup>
-          ))}
-          <button className="btn-add-step" onClick={addStep}>
+          ))} */}
+          {guideToEdit.step_1 && <FormGroup className='how-to-steps'>
+            <Label
+              className="ht-steps-text"
+              for={'step_1'}
+            >{`Step 1`}</Label>
+            <Input
+              className="ht-step-input"
+              name='step_1'
+              type="textarea"
+              value={guideToEdit.step_1}
+              onChange={HandleChange}
+            />
+          </FormGroup>}
+          {guideToEdit.step_2 && <FormGroup className='how-to-steps'>
+            <Label
+              className="ht-steps-text"
+              for={'step_2'}
+            >{`Step 2`}</Label>
+            <Input
+              className="ht-step-input"
+              name='step_2'
+              type="textarea"
+              value={guideToEdit.step_2}
+              onChange={HandleChange}
+            />
+          </FormGroup>}
+          {guideToEdit.step_3 && <FormGroup className='how-to-steps'>
+            <Label
+              className="ht-steps-text"
+              for={'step_3'}
+            >{`Step 3`}</Label>
+            <Input
+              className="ht-step-input"
+              name='step_3'
+              type="textarea"
+              value={guideToEdit.step_3}
+              onChange={HandleChange}
+            />
+          </FormGroup>}
+          {guideToEdit.step_4 && <FormGroup className='how-to-steps'>
+            <Label
+              className="ht-steps-text"
+              for={'step_4'}
+            >{`Step 4`}</Label>
+            <Input
+              className="ht-step-input"
+              name='step_4'
+              type="textarea"
+              value={guideToEdit.step_4}
+              onChange={HandleChange}
+            />
+          </FormGroup>}
+          {guideToEdit.step_5 && <FormGroup className='how-to-steps'>
+            <Label
+              className="ht-steps-text"
+              for={'step_5'}
+            >{`Step 1`}</Label>
+            <Input
+              className="ht-step-input"
+              name='step_5'
+              type="textarea"
+              value={guideToEdit.step_5}
+              onChange={HandleChange}
+            />
+          </FormGroup>}
+          {/* <button className="btn-add-step" onClick={addStep}>
             + add next step
-          </button>
+          </button> */}
           <button className="how-to-submit" onClick={HandleSubmit}>
             Submit
           </button>
@@ -149,4 +237,4 @@ const CreateHowTo = props => {
     );
 };
 
-export default CreateHowTo;
+export default EditHowTo;

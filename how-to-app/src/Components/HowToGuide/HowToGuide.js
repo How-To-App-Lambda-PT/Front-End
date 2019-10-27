@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Segment, Header, Card, Container, Embed } from "semantic-ui-react";
+import { Segment, Header, Card, Container, Embed, Button } from "semantic-ui-react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { Redirect } from 'react-router-dom';
 
 const style = {
   h1: {
@@ -20,12 +21,15 @@ const style = {
 
 const HowToGuide = props => {
   let id = localStorage.getItem("guideId");
-
+  console.log(props.match.params.id, props.name)
   const [guide, setGuide] = useState();
 
   useEffect(() => {
     axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides/${id}`)
-      .then(res => setGuide(res.data[0]))
+      .then(res => {
+        console.log('HowTo:', res.data)
+        setGuide(res.data[0])
+      })
       .catch(err => console.log("HowToGuide: useEffect: GET:", err));
   }, []);
 
@@ -58,18 +62,20 @@ const HowToGuide = props => {
 
   const videoId = videoLink.split("=")[1] || "";
 
-  const videoPlayer = (
-    <Embed
+  const videoPlayer = () => {
+    return (
+    videoId ? <Embed
       style={style.last}
       id={videoId}
       source="youtube"
       autoplay={true}
       brandedUI
-    />
-  );
+      /> : <div>Video not available</div>
+    )
+  };
 
   return (
-    <Segment style={{ padding: 0 }}>
+    <Segment style={{ padding: 0, width: '80%', maxWidth: '900px', margin: '50px auto' }}>
       <Container>
         <Header
           as="h1"
@@ -85,7 +91,8 @@ const HowToGuide = props => {
         />
         <Card.Group itemsPerRow={1}>{steps}</Card.Group>
       </Container>
-      <Container>{videoPlayer || "No Video Available"}</Container>
+      <Container>{videoPlayer()}</Container>
+      <Button onClick={() => props.history.push('/editGuide')}>Edit Guide</Button>
     </Segment>
   );
 };

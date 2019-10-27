@@ -15,8 +15,11 @@ const UserPageNewsfeed = props => {
 
   useEffect(() => {
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides`)
-      .then(res => setGuides(res.data))
-      .catch(err => console.log('UserPageNewsfeed: usewEffect: GET: err=', err))
+      .then(res => {
+        setGuides(res.data)
+        localStorage.setItem('guides', JSON.stringify(res.data))
+      })
+      .catch(err => console.log('UserPageNewsfeed: useEffect: GET: err=', err))
    }, [])
 
 
@@ -61,9 +64,7 @@ const UserPageNewsfeed = props => {
                   </Table.Cell>
                   <Table.Cell>
                         {guides.map(guide => 
-                          <Link to={`/guides/${guide.id}`}>
                             <HowToCard key={guide.id} guide={guide} type={'newsfeed'} history={props.history}/>
-                          </Link>
                           )}
                   </Table.Cell>
                 </Table.Row>                

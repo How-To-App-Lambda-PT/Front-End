@@ -8,6 +8,7 @@ import StarRatingComponent from "react-star-rating-component";
 const HowToCard = props => {
   const guide = props.guide;
   const [user] = useContext(UserContext);
+  console.log('HowTo: guide;', guide.id)
 
   const deleteHowTo = e => {
     axiosWithAuth(
@@ -74,7 +75,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign="center">
-            <button className="try-it">Try It</button>
+            <Button className="try-it" as={Link} to={`/guides/${guide.id}`}>Try It</Button>
           </Table.Cell>
         </Table.Row>
       </Table>
