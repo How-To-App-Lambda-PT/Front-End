@@ -74,7 +74,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign="center">
-            <button className="try-it">Try It</button>
+            <Button className="try-it" as={Link} to={`/guides/${guide.id}`}>Try It</Button>
           </Table.Cell>
         </Table.Row>
       </Table>

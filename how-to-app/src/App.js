@@ -27,7 +27,7 @@ function App() {
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/searchresults" component={SearchResults} />
       <PrivateRoute path='/userpagenewsfeed' component={UserPageNewsfeed} />
-      <PrivateRoute path="/guides/:id" component={HowToGuide} />
+      <PrivateRoute exact path="/guides/:id" component={HowToGuide} />
       <PrivateRoute path="/editguide" component={EditHowTo} />
     </div>
   );
