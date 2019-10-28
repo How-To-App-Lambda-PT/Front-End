@@ -8,5 +8,8 @@
       "config": { "distDir": "build" }
     }
   ],
-  "routes": [{ "src": "/(.*)", "dest": "how-to-app/$1" }]
+  "routes": [
+    { "src": "/(.*)", "dest": "how-to-app/$1" },
+    { "src": "^/usepagenewsfeed", "dest": "/userpagenewsfeed" },
+  ]
 }
