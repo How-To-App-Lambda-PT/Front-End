@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Header />
       <Route exact path="/" component={SignIn} />
-      <Route path="/createAccount" render={props => <CreateAccount {...props} />} />
+      <Route path="/createAccount" render={props => <CreateAccount {...props} history={props.history} />} />
       <PrivateRoute path="/createpost" component={CreateHowTo} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       <PrivateRoute path="/searchresults" component={SearchResults} />
