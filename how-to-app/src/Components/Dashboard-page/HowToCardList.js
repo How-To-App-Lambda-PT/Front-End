@@ -9,11 +9,11 @@ const HowToCardList = props => {
   // console.log('HowToCardList:', guides)
   const guidesList = () => {
     return (
-      guides.map((guide, i) => {
+      guides.map((guide) => {
         return (
         // <Link to={`/guides/${guide.id}`}>
         <HowToCard
-          i={i}
+          // i={i}
           key={guide.id} 
           guide={guide}
           type={'searchResult'}

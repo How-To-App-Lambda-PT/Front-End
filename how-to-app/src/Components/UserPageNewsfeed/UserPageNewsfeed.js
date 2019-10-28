@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { GuidesContext, UserContext } from '../../contexts/index'
 import HowToCard from '../Dashboard-page/HowToCard'
-import { Redirect } from 'react-router-dom'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Table } from 'semantic-ui-react';
 import Header from '../Header'
@@ -10,13 +9,17 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 
 const UserPageNewsfeed = props => {    
+  
     const [guides, setGuides] = useContext(GuidesContext);
     const [user] = useContext(UserContext);
 
   useEffect(() => {
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides`)
-      .then(res => setGuides(res.data))
-      .catch(err => console.log('UserPageNewsfeed: usewEffect: GET: err=', err))
+      .then(res => {
+        setGuides(res.data)
+        localStorage.setItem('guides', JSON.stringify(res.data))
+      })
+      .catch(err => console.log('UserPageNewsfeed: useEffect: GET: err=', err))
    }, [])
 
 
@@ -61,9 +64,7 @@ const UserPageNewsfeed = props => {
                   </Table.Cell>
                   <Table.Cell>
                         {guides.map(guide => 
-                          <Link to={`/guides/${guide.id}`}>
                             <HowToCard key={guide.id} guide={guide} type={'newsfeed'} history={props.history}/>
-                          </Link>
                           )}
                   </Table.Cell>
                 </Table.Row>                

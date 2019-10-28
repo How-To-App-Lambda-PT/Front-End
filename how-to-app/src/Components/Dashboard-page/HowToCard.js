@@ -8,6 +8,7 @@ import StarRatingComponent from "react-star-rating-component";
 const HowToCard = props => {
   const guide = props.guide;
   const [user] = useContext(UserContext);
+  console.log('HowTo: guide;', guide.id)
 
   const deleteHowTo = e => {
     axiosWithAuth(
@@ -74,18 +75,16 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign="center">
-            <button className="try-it">Try It</button>
+            <Button className="try-it" as={Link} to={`/guides/${guide.id}`}>Try It</Button>
           </Table.Cell>
         </Table.Row>
       </Table>
     );
   } else if (props.type == "searchResult") {
     return (
-      // <Link to={`/guides/${props.id}`}>
       <Table>
         <Table.Row className={props.i % 2 == 1 ? "markedResult" : ""}>
           <Table.Cell width="7">{guide.title}</Table.Cell>
-
           <Table.Cell>
             <div>
               <h2>
@@ -104,7 +103,6 @@ const HowToCard = props => {
           </Table.Cell>
         </Table.Row>
       </Table>
-      // </Link>
     );
   } else if (props.type == "account") {
     return (
@@ -136,7 +134,6 @@ const HowToCard = props => {
               <span> {guide.username}</span>
             </p>
           </Table.Cell>
-
           <Table.Cell verticalAlign="top" textAlign="left">
             <Table.Row>
               <Table.Cell>
