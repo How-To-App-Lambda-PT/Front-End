@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import { Card, Image, Table, Button } from "semantic-ui-react";
+import { Image, Table, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { UserContext } from "../../contexts/index";
+// import { UserContext } from "../../contexts/index";
 import StarRatingComponent from "react-star-rating-component";
 
 const HowToCard = props => {
   const guide = props.guide;
-  const [user] = useContext(UserContext);
-  console.log('HowTo: guide;', guide.id)
+  // const [user] = useContext(UserContext);
+  
 
   const deleteHowTo = e => {
     axiosWithAuth(

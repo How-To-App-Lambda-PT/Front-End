@@ -19,19 +19,10 @@ const EditHowTo = props => {
   const [guideToEdit, setGuideToEdit] = useState({}); //State for the New how-to object
   console.log('GuideToEdit=', guideToEdit)
 
-  // const [steps, setSteps] = useState([]); //variable to add more steps
-
-  // const convertStepsToArray = guideObj => {
-  //   let stepArr = []
-    
-    
-  //   console.log('convertStepsToArray: stepArr=', stepArr)
-  //   return stepArr
-  // }
 
   useEffect(() => {
 
-    axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides/${localStorage.guideId}`)
+    axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides/${props.match.params.id}`)
       .then(res => {
         console.log('EditHowTo: useEffect: GET: res.data=', res.data)
         setGuideToEdit(res.data[0])
@@ -70,7 +61,7 @@ const EditHowTo = props => {
     axiosWithAuth("put", `https://bw-how-to.herokuapp.com/guides/${newObj.id}`, newObj)
       .then(res => {
         // setGuides([...guides, newObj]);
-        props.history.push(`/guide/${newObj.id}`);
+        props.history.push(`/guides/${newObj.id}`);
         console.log(res.data)
       })
       .catch(err => console.log(guides, guideToEdit, err));
