@@ -73,7 +73,15 @@ const HowToCard = props => {
               </Table.Cell>
             </Table.Row>
             <Table.Cell verticalAlign='center'>
-              <Button className="try-it" as={Link} to={`/guides/${guide.id}`}>Try It</Button>
+              <Button
+                className="try-it"
+                as={Link}
+                to={`/guides/${guide.id}`}
+                style={{
+                  color: 'white',
+                  backgroundColor: 'green'
+                }}
+              >Try It</Button>
             </Table.Cell>
           </Table.Cell>
         </Table.Row>
@@ -102,7 +110,14 @@ const HowToCard = props => {
           <Table.Cell textAlign="right">
             <p>Tried: 64 times</p>
           </Table.Cell>
-          <Button as={Link} to={`/guides/${guide.id}`} style={{color: 'white', backgroundColor: 'green', marginTop: '10px'}}>Try It</Button>
+          <Button
+            as={Link}
+            to={`/guides/${guide.id}`}
+            style={{
+              color: 'white',
+              backgroundColor: 'green',
+              marginTop: '10px'
+            }}>Try It</Button>
         </Table.Row>
       </Table>
     );
