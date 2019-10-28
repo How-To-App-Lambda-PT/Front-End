@@ -22,7 +22,6 @@ const style = {
 
 const HowToGuide = props => {
   let id = props.match.params.id;
-  console.log(props.match.params.id)
   
   const [guide, setGuide] = useState();
 
@@ -31,7 +30,6 @@ const HowToGuide = props => {
   useEffect(() => {
     axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides/${id}`)
       .then(res => {
-        console.log('HowTo:', res.data)
         setGuide(res.data[0])
       })
       .catch(err => console.log("HowToGuide: useEffect: GET:", err));
@@ -42,9 +40,9 @@ const HowToGuide = props => {
   }
 
   const stepArr = () => {
-    let arr = [];
+    let arr =[]
     for (let key in guide) {
-      if (key.toString().includes("step")) {
+      if (key.toString().includes("step") && guide[key] !== null && guide[key] !== '') {
         arr.push(key);
       }
     }
@@ -78,6 +76,15 @@ const HowToGuide = props => {
     )
   };
 
+  const deleteHowTo = () => {
+    axiosWithAuth(
+      "delete",
+      `https://bw-how-to.herokuapp.com/guides/${guide.id}`
+    )
+      .then(props.history.push(`/userpagenewsfeed`))
+      .catch(err => console.log(err))
+  };
+
   return (
     <Segment style={{ padding: 0, width: '80%', maxWidth: '900px', margin: '50px auto' }}>
       <Container>
@@ -103,10 +110,15 @@ const HowToGuide = props => {
         Edit Guide
       </Button>
       <Button
-        onClick={() => props.history.push(`/newsfeed`)}
+        onClick={deleteHowTo}
         disabled={JSON.parse(user).type !== 'creator'}
       >
         Delete Guide
+      </Button>
+      <Button
+        onClick={() => props.history.push('/userpagenewsfeed')}
+      >
+        Return to Newsfeed
       </Button>
     </Segment>
   );

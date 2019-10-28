@@ -115,11 +115,6 @@ const SignIn = props => {
             )}
           </Formik>
         </div>
-        <div className=''> Not a member yet? 
-          <Link to='/createAccount'>
-            Sign Up!
-          </Link>
-        </div>
       </Container>
     </Container>
   );
