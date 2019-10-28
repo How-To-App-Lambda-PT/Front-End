@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Segment, Header, Card, Container, Embed, Button } from "semantic-ui-react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Redirect } from 'react-router-dom';
+import { UserContext } from '../../contexts/index';
 
 const style = {
   h1: {
@@ -19,10 +19,14 @@ const style = {
   }
 };
 
+
 const HowToGuide = props => {
-  let id = localStorage.getItem("guideId");
-  console.log(props.match.params.id, props.name)
+  let id = props.match.params.id;
+  console.log(props.match.params.id)
+  
   const [guide, setGuide] = useState();
+
+  const [user] = useContext(UserContext)
 
   useEffect(() => {
     axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides/${id}`)
@@ -92,7 +96,18 @@ const HowToGuide = props => {
         <Card.Group itemsPerRow={1}>{steps}</Card.Group>
       </Container>
       <Container>{videoPlayer()}</Container>
-      <Button onClick={() => props.history.push('/editGuide')}>Edit Guide</Button>
+      <Button
+        onClick={() => props.history.push(`/editGuide/${id}`)}
+        disabled={JSON.parse(user).type !== 'creator'}
+      >
+        Edit Guide
+      </Button>
+      <Button
+        onClick={() => props.history.push(`/newsfeed`)}
+        disabled={JSON.parse(user).type !== 'creator'}
+      >
+        Delete Guide
+      </Button>
     </Segment>
   );
 };

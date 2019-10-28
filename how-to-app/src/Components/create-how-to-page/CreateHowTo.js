@@ -14,9 +14,11 @@ const CreateHowTo = props => {
 
   const [user] = useContext(UserContext); //Makes user context store available to validate {type: 'creator'}
 
+  const currentUser = JSON.parse(user)
+
   const initialValue = {
-    user_id: user.id,
-    type: user.id,
+    user_id: currentUser.id,
+    type: 'Food',
     title: "",
     description: "Things you should know",
     step_1: ""
