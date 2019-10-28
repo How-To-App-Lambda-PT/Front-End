@@ -22,7 +22,6 @@ const style = {
 
 const HowToGuide = props => {
   let id = props.match.params.id;
-  console.log(props.match.params.id)
   
   const [guide, setGuide] = useState();
 
@@ -31,7 +30,6 @@ const HowToGuide = props => {
   useEffect(() => {
     axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides/${id}`)
       .then(res => {
-        console.log('HowTo:', res.data)
         setGuide(res.data[0])
       })
       .catch(err => console.log("HowToGuide: useEffect: GET:", err));
@@ -44,7 +42,7 @@ const HowToGuide = props => {
   const stepArr = () => {
     let arr =[]
     for (let key in guide) {
-      if (key.toString().includes("step") && guide[key] !== null) {
+      if (key.toString().includes("step") && guide[key] !== null && guide[key] !== '') {
         arr.push(key);
       }
     }
