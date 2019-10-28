@@ -1,9 +1,24 @@
+.left-side {
+  /* width: 49%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-input {
+  box-sizing: border-box;
+}
+
 .create-cont {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
+
+/* .image {
+  width: 49%;
+} */
 
 .img-hanger {
   object-fit: cover;
@@ -19,6 +34,5 @@
   height: 75px;
   left: 782px;
   top: 151px;
-
   color: #79C473;
 }
