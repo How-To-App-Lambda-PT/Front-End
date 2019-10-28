@@ -1,22 +1,21 @@
 import React, { useContext } from "react";
 import { Card } from "semantic-ui-react";
-import { Link } from 'react-router-dom'
 import { GuidesContext } from "../../contexts/index";
 import HowToCard from "./HowToCard";
 
 const HowToCardList = props => {
   const [guides] = useContext(GuidesContext);
-  
+
   const guidesList = () => {
     return (
       guides.map((guide, i) => {
         return (
-        <HowToCard          
+          <HowToCard
             key={guide.id}
             guide={guide}
             type={'searchResult'}
             i={i}
-        /> 
+          />
         )
 
       })

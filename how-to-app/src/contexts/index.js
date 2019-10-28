@@ -7,7 +7,6 @@ export const UserContext = createContext();
 export const UserProvider = props => {
   const currentUser = localStorage.user
   const [user, setUser] = useState(currentUser || {});
-  console.log('UserProvider: JSON.parse(user)=', user)
 
   return (
     <UserContext.Provider value={[user, setUser]}>
@@ -20,7 +19,6 @@ export const GuidesContext = createContext();
 
 export const GuidesProvider = props => {
   const [guides, setGuides] = useState([])
-  console.log('GuidesProvider: guides=', guides)
 
   function fetchGuides() {
     return (
@@ -31,11 +29,11 @@ export const GuidesProvider = props => {
   }
 
 
-    useEffect(() => {
-      if (localStorage.user) {
-        fetchGuides()
-      }
-     }, [])
+  useEffect(() => {
+    if (localStorage.user) {
+      fetchGuides()
+    }
+  }, [])
 
 
 

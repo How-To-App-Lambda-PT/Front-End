@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext, GuidesContext } from "../../contexts/index";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Table, Image } from "semantic-ui-react";
@@ -6,19 +6,18 @@ import SearchField from "../SearchResults/SearchField";
 import HowToCard from "./HowToCard";
 
 const Dashboard = props => {
-  const [user] = useContext(UserContext);
-  const localUser = JSON.parse(user)
-  
-  const [guides] = useContext(GuidesContext);
-  console.log('Dahboard: user=', localUser);
-  console.log('Dashboard: guides=', guides);
 
+  const [user] = useContext(UserContext);
+
+  const localUser = JSON.parse(user)
+
+  const [guides] = useContext(GuidesContext);
 
   if (guides == undefined) {
     return <h2>loading...</h2>;
   } else {
     return (
-      <Table style={{width: '80%'}}>
+      <Table style={{ width: '80%' }}>
         <Table.Row>
           <Table.Cell collapsing={true}>
             <Image
@@ -37,8 +36,8 @@ const Dashboard = props => {
         <Table.Row>
           <Table.Cell className="search-div" textAlign="left">
             <span className="find-how-to">Find a How-to</span>
-            </Table.Cell>
-       <Table.Cell collapsing={false} textAlign='left'>
+          </Table.Cell>
+          <Table.Cell collapsing={false} textAlign='left'>
             <SearchField history={props.history} />
           </Table.Cell>
           <Table.Cell collapsing={false} textAlign="right">

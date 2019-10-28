@@ -1,6 +1,6 @@
 //basic library/framework imports
 import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
+
 import { Container, Form, Label, FormGroup, Input } from "reactstrap";
 import Header from "../Header";
 //component imports
@@ -25,9 +25,9 @@ const CreateHowTo = props => {
   };
 
   const [newHowTo, setNewHowTo] = useState(initialValue); //State for the New how-to object
- 
+
   const [guides, setGuides] = useContext(GuidesContext);
-  
+
   let [steps, setSteps] = useState([1]); //variable to add more steps
 
 
@@ -53,9 +53,9 @@ const CreateHowTo = props => {
     if (!duplicateTitle) {
 
       axiosWithAuth("post", "https://bw-how-to.herokuapp.com/guides", newHowTo)
-        .then(res => {
+        .then(() => {
           setGuides([...guides, newHowTo]);
-          props.history.push("/userpagenewsfeed");
+          props.history.push("/userpagenewsfeed")
         })
         .catch(err => console.log('CreateHowTo: newHowTo=', newHowTo, 'guides=', guides, err));
     } else {
@@ -69,7 +69,7 @@ const CreateHowTo = props => {
   const addStep = e => {
     e.preventDefault();
 
-    if(steps.length == 5){
+    if (steps.length == 5) {
       alert('Only a MAXIMUM of 5 steps')
     } else {
       setSteps([...steps, steps.length + 1]);
@@ -82,86 +82,85 @@ const CreateHowTo = props => {
     });
   };
 
-  // if (user.type === "creator") {
-    //   the form where data will be inputed
-    return (
-      <Container className="create-how-to-cont">
-        <Header />
-        <h3 className="create-how-to-text">Create a How-To</h3>
-        <Form className="create-how-to-form" onSubmit={HandleSubmit}>
-          <FormGroup className="how-to-title-category">
-            <div className="title-ht">
-              <Label className="ht-title-text" for="title">
-                Title of How-To
+  //   the form where data will be inputed
+  return (
+    <Container className="create-how-to-cont">
+      <Header />
+      <h3 className="create-how-to-text">Create a How-To</h3>
+      <Form className="create-how-to-form" onSubmit={HandleSubmit}>
+        <FormGroup className="how-to-title-category">
+          <div className="title-ht">
+            <Label className="ht-title-text" for="title">
+              Title of How-To
               </Label>
-              <Input
-                className="ht-title-input"
-                name="title"
-                type="text"
-                value={newHowTo.title}
-                onChange={HandleChange}
-              />
-            </div>
+            <Input
+              className="ht-title-input"
+              name="title"
+              type="text"
+              value={newHowTo.title}
+              onChange={HandleChange}
+            />
+          </div>
 
-            <div className="category-ht">
-              <Label className="ht-title-text" for="type">
-                Category
+          <div className="category-ht">
+            <Label className="ht-title-text" for="type">
+              Category
               </Label>
-              <Input
-                className="ht-title-input"
-                type="select"
-                name="category"
-                onChange={HandleChange}
-              >
-                <option value="selected"></option>
-                <option className="ht-options" value="cars">
-                  Cars and Other Vehices
+            <Input
+              className="ht-title-input"
+              type="select"
+              name="category"
+              onChange={HandleChange}
+            >
+              <option value="selected"></option>
+              <option className="ht-options" value="cars">
+                Cars and Other Vehices
                 </option>
-                <option className="ht-options" value="computers">
-                  Computers and Electronics
+              <option className="ht-options" value="computers">
+                Computers and Electronics
                 </option>
-                <option className="ht-options" value="food">
-                  Food and Cooking
+              <option className="ht-options" value="food">
+                Food and Cooking
                 </option>
-                <option className="ht-options" value="finance">
-                  Finance and Business
+              <option className="ht-options" value="finance">
+                Finance and Business
                 </option>
-                <option className="ht-options" value="hobbies">
-                  Hobbies and Craft
+              <option className="ht-options" value="hobbies">
+                Hobbies and Craft
                 </option>
-                <option className="ht-options" value="home">
-                  Home and Garden
+              <option className="ht-options" value="home">
+                Home and Garden
                 </option>
-                <option className="ht-options" value="lifeHacks">
-                  Life Hacks
+              <option className="ht-options" value="lifeHacks">
+                Life Hacks
                 </option>
-              </Input>
-            </div>
+            </Input>
+          </div>
+        </FormGroup>
+        {steps.map(step => (
+          <FormGroup key={step} className="how-to-steps">
+            <Label
+              className="ht-steps-text"
+              for={`step_${step}`}
+            >{`Step ${step}`}</Label>
+            <Input
+              className="ht-step-input"
+              name={`step_${step}`}
+              type="textarea"
+              value={newHowTo[`step_${step}`]}
+              onChange={HandleChange}
+            />
           </FormGroup>
-          {steps.map(step => (
-            <FormGroup key={step} className="how-to-steps">
-              <Label
-                className="ht-steps-text"
-                for={`step_${step}`}
-              >{`Step ${step}`}</Label>
-              <Input
-                className="ht-step-input"
-                name={`step_${step}`}
-                type="textarea"
-                value={newHowTo[`step_${step}`]}
-                onChange={HandleChange}
-              />
-            </FormGroup>
-          ))}
-          <button className="btn-add-step" onClick={addStep}>
-            + add next step
+        ))}
+        <button className="btn-add-step" onClick={addStep}>
+          + add next step
           </button>
-          <button className="how-to-submit" onClick={HandleSubmit}>
-            Submit
+        <button className="how-to-submit" onClick={HandleSubmit}>
+          Submit
           </button>
-        </Form>
-      </Container>
-    );
+      </Form>
+    </Container>
+  );
 };
 
 export default CreateHowTo;

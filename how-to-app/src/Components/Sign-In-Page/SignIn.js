@@ -36,7 +36,6 @@ const SignIn = props => {
               axios
                 .post(`https://bw-how-to.herokuapp.com/login`, values)
                 .then(res => {
-                  console.log("SignIn: POST: res.data=", res.data);
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data));
                   setUser(res.data);
@@ -44,7 +43,7 @@ const SignIn = props => {
                   resetForm();
                   props.history.push("/userpagenewsfeed");
                 })
-                .catch(err => console.log("Login: POST:", values, err));
+                .catch(err => console.log("Login: POST: err=", err));
             }}
           >
             {({
@@ -56,63 +55,63 @@ const SignIn = props => {
               handleChange,
               isSubmitting
             }) => (
-              <Form className="login-form" onSubmit={handleSubmit}>
-                <Col>
-                  <FormGroup className="user-group">
-                    <Label className="user-label" htmlFor="username">
-                      Username
+                <Form className="login-form" onSubmit={handleSubmit}>
+                  <Col>
+                    <FormGroup className="user-group">
+                      <Label className="user-label" htmlFor="username">
+                        Username
                     </Label>
-                    <Field
-                      type="text"
-                      onBlur={handleBlur}
-                      name="username"
-                      values={values.username}
-                      onChange={handleChange}
-                      className="login-field"
-                    />
-                    <Error
-                      touched={touched.username}
-                      message={errors.username}
-                    />
-                  </FormGroup>
-                </Col>
-                <Col>
-                  <FormGroup className="pass-group">
-                    <Label className="user-label" htmlFor="password">
-                      Password
+                      <Field
+                        type="text"
+                        onBlur={handleBlur}
+                        name="username"
+                        values={values.username}
+                        onChange={handleChange}
+                        className="login-field"
+                      />
+                      <Error
+                        touched={touched.username}
+                        message={errors.username}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col>
+                    <FormGroup className="pass-group">
+                      <Label className="user-label" htmlFor="password">
+                        Password
                     </Label>
 
-                    <Field
-                      type="password"
-                      onBlur={handleBlur}
-                      name="password"
-                      values={values.password}
-                      onChange={handleChange}
-                      className="login-field"
-                    />
-                    <Error
-                      touched={touched.password}
-                      message={errors.password}
-                    />
-                  </FormGroup>
-                  <div>
-                    <Link to="/createAccount">
-                      Don't have an account?{" "}
-                      <span className="sign-txt">Sign Up!</span>
-                    </Link>
-                  </div>
-                </Col>
-                <div className="button-div">
-                  <Button
-                    className="login-button"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    Submit
+                      <Field
+                        type="password"
+                        onBlur={handleBlur}
+                        name="password"
+                        values={values.password}
+                        onChange={handleChange}
+                        className="login-field"
+                      />
+                      <Error
+                        touched={touched.password}
+                        message={errors.password}
+                      />
+                    </FormGroup>
+                    <div>
+                      <Link to="/createAccount">
+                        Don't have an account?{" "}
+                        <span className="sign-txt">Sign Up!</span>
+                      </Link>
+                    </div>
+                  </Col>
+                  <div className="button-div">
+                    <Button
+                      className="login-button"
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      Submit
                   </Button>
-                </div>
-              </Form>
-            )}
+                  </div>
+                </Form>
+              )}
           </Formik>
         </div>
       </Container>

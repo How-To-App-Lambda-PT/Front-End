@@ -1,12 +1,10 @@
 import React from "react";
 import "./App.css";
-
-import CreateAccount from './Components/CreateAccount/CreateAccount.js';
-
 import { Route } from "react-router-dom";
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 //Component Imports
+import CreateAccount from './Components/CreateAccount/CreateAccount.js';
 import CreateHowTo from "./Components/create-how-to-page/CreateHowTo";
 import PrivateRoute from "./PrivateRoute";
 import SignIn from "./Components/Sign-In-Page/SignIn";

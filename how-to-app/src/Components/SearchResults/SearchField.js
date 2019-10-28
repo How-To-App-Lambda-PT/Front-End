@@ -17,16 +17,10 @@ const SearchField = props => {
   const searchHandler = () => {
     const filteredResults = guides.filter(guide =>
       guide.title.includes(values.searchValue)
-    );
-
+    )
     setGuides(filteredResults);
-
     localStorage.setItem("searchTerm", values.searchValue);
     localStorage.setItem("guides", JSON.stringify(filteredResults));
-    console.log(
-      "SearchField: searchHandler: filteredResults=",
-      filteredResults
-    );
     props.history.push("/searchresults");
   };
 

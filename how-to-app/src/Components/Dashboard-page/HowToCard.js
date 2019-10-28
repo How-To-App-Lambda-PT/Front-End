@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
-import { Image, Table, Button, TableBody } from "semantic-ui-react";
+import React from "react";
+import { Image, Table, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-// import { UserContext } from "../../contexts/index";
 import StarRatingComponent from "react-star-rating-component";
 
 const HowToCard = props => {
+
   const guide = props.guide;
-  // const [user] = useContext(UserContext);
-  
 
   const deleteHowTo = e => {
     axiosWithAuth(
@@ -175,7 +173,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign="center">
-            <Button icon="edit" as={Link} to={`/editguide/${guide.id}`}/>
+            <Button icon="edit" as={Link} to={`/editguide/${guide.id}`} />
             <Button icon="trash" onClick={deleteHowTo}></Button>
           </Table.Cell>
         </Table.Row>
