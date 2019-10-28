@@ -7,6 +7,7 @@ import axios from 'axios';
 import './CreateAccount.css'
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 // import '../../App.css';
+import { Redirect } from 'react-router-dom';
 
 function CreateAccount({ errors, touched, values, }, props) {
   
@@ -29,7 +30,7 @@ function CreateAccount({ errors, touched, values, }, props) {
                 <Label>Username</Label>
             </div>
           <div>
-            <Field className="email-text" type="email" name="username" />
+            <Field className="email-text" type="text" name="username" />
           </div>
           </div>
 
@@ -49,9 +50,7 @@ function CreateAccount({ errors, touched, values, }, props) {
           </div>
       
           <div className="button-div">
-            <Link to='../Dashboard-page/Dashboard.js'>
               <Button className="login-button" type="submit">Submit</Button> 
-            </Link>             
           </div>
         </Form>
         </Container>
@@ -92,6 +91,7 @@ const FormikCreateAccount = withFormik({
       "password": values.password, 
       "type": "creator"
     }
+    console.log(body)
     axios
       .post("https://bw-how-to.herokuapp.com/register", body)
       .then(res => {
@@ -99,7 +99,7 @@ const FormikCreateAccount = withFormik({
         // const jwtToken = res.data.token,
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("user", res.data.id)
-        props.history.push("/userpagenewsfeed")
+        props.history.push('/userpagenewsfeed')
       })
       .catch(err => console.log(err, values));
   },
