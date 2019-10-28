@@ -19,7 +19,6 @@ const Dashboard = props => {
 
 
 
-
   if (guides == undefined) {
     return <h2>loading...</h2>;
   } else {
@@ -34,17 +33,22 @@ const Dashboard = props => {
               size="small"
               avatar={true}
             />
-            {user.username}
+            <h2 className="user-nameeee">{user.username}</h2>
           </Table.Cell>
         </Table.Row>
+        <div className="badges">
+          <h3 className="badges-txt">Badges Earned</h3>
+        </div>
         <Table.Row>
-          <Table.Cell textAlign="left">
-            <span>Find a How-to</span>
+          <Table.Cell className="search-div" textAlign="left">
+            <span className="find-how-to">Find a How-to</span>
+            {/* </Table.Cell>
+       <Table.Cell collapsing={true} textAlign='left'> */}
             <SearchField history={props.history} />
           </Table.Cell>
-          <Table.Cell collapsing={true} textAlign="right">
-            <Link to="/">Upgrade Account</Link>
-          </Table.Cell>
+          {/* <Table.Cell collapsing={true} textAlign="right">
+            // {/* <Link to="/">Upgrade Account</Link> */}
+          {/* </Table.Cell> */}
         </Table.Row>
 
         <Table.Row>
@@ -52,14 +56,14 @@ const Dashboard = props => {
             <button className="myacc-create-btn">Create a new How-to</button>
           </Link>
         </Table.Row>
-        <Table.Row>
+        <Table.Row className="dashboard-table-top">
           <Table>
-            <Table.Row>
+            <Table.Row className="dashboard-table">
               <Table.Cell>
-                <h3>My How-to</h3>
+                <h3 className="my-how-to">My How-to</h3>
               </Table.Cell>
               <Table.Cell>
-                <h3>Favorite</h3>
+                <h3 className="myacc-favorite">Favorites</h3>
               </Table.Cell>
             </Table.Row>
             <Table.Row>
