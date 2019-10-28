@@ -29,7 +29,7 @@ const HowToCard = props => {
         <Table.Row>
           <Table.Cell collapsing={true}>
             <Image
-              textAlign="left"
+              textalign="left"
               size="medium"
               src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
             />

@@ -10,8 +10,7 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Redirect } from 'react-router-dom';
 
 function CreateAccount({ errors, touched, values, }, props) {
-  
-  console.log('CreateAccount', props)
+  console.log('CreateAccount: values=', values)
 
   return (
 
@@ -66,13 +65,13 @@ function CreateAccount({ errors, touched, values, }, props) {
 }
 
 const FormikCreateAccount = withFormik({
-  mapPropsToValues({ username, password, verifyPassword, values, props }) {
+  mapPropsToValues({ username, password, verifyPassword, values, history }) {
     console.log('FormikCreateAccount', values);
     return {
       username: username || "",
       password: password || "",
-      verifyPassword: verifyPassword || ""
-      // history: props.history
+      verifyPassword: verifyPassword || "",
+      history: history
     };
   },
 
@@ -85,21 +84,20 @@ const FormikCreateAccount = withFormik({
       .required()
   }),
 
-  handleSubmit: (values, props) => {
+  handleSubmit: (values) => {
     const body = {
       "username": values.username,
       "password": values.password, 
       "type": "creator"
     }
-    console.log(body)
+     
     axios
       .post("https://bw-how-to.herokuapp.com/register", body)
       .then(res => {
-        console.log(res, values)
-        // const jwtToken = res.data.token,
+        console.log('handleSubmit: POST: res=', res, 'values=', values)
         localStorage.setItem("token", res.data.token)
-        localStorage.setItem("user", res.data.id)
-        props.history.push('/userpagenewsfeed')
+        localStorage.setItem("user", res.data)
+        values.history.push('/userpagenewsfeed')
       })
       .catch(err => console.log(err, values));
   },
