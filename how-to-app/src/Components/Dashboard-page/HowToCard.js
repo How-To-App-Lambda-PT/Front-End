@@ -82,7 +82,9 @@ const HowToCard = props => {
   } else if (props.type == "searchResult") {
     return (
       <Table>
-        <Table.Row className={props.i % 2 == 1 ? "markedResult" : ""}>
+        <Table.Row
+          className={props.i % 2 == 1 ? "markedResult" : ""}
+        >
           <Table.Cell width="7">{guide.title}</Table.Cell>
           <Table.Cell>
             <div>
@@ -100,6 +102,7 @@ const HowToCard = props => {
           <Table.Cell textAlign="right">
             <p>Tried: 64 times</p>
           </Table.Cell>
+          <Button as={Link} to={`/guides/${guide.id}`} style={{color: 'white', backgroundColor: 'green', marginTop: '10px'}}>Try It</Button>
         </Table.Row>
       </Table>
     );
@@ -154,7 +157,7 @@ const HowToCard = props => {
           </Table.Cell>
 
           <Table.Cell textAlign="center">
-            <Button icon="edit"></Button>
+            <Button icon="edit" as={Link} to={`/editguide/${guide.id}`}/>
             <Button icon="trash" onClick={deleteHowTo}></Button>
           </Table.Cell>
         </Table.Row>

@@ -6,19 +6,17 @@ import HowToCard from "./HowToCard";
 
 const HowToCardList = props => {
   const [guides] = useContext(GuidesContext);
-  // console.log('HowToCardList:', guides)
+  
   const guidesList = () => {
     return (
-      guides.map((guide) => {
+      guides.map((guide, i) => {
         return (
-        // <Link to={`/guides/${guide.id}`}>
-        <HowToCard
-          // i={i}
-          key={guide.id} 
-          guide={guide}
-          type={'searchResult'}
+        <HowToCard          
+            key={guide.id}
+            guide={guide}
+            type={'searchResult'}
+            i={i}
         /> 
-        // </Link> 
         )
 
       })
