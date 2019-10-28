@@ -72,10 +72,9 @@ const HowToCard = props => {
                 </div>
               </Table.Cell>
             </Table.Row>
-          </Table.Cell>
-
-          <Table.Cell textAlign="center">
-            <Button className="try-it" as={Link} to={`/guides/${guide.id}`}>Try It</Button>
+            <Table.Cell verticalAlign='center'>
+              <Button className="try-it" as={Link} to={`/guides/${guide.id}`}>Try It</Button>
+            </Table.Cell>
           </Table.Cell>
         </Table.Row>
       </Table>

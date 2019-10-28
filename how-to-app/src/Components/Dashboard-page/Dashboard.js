@@ -7,16 +7,11 @@ import HowToCard from "./HowToCard";
 
 const Dashboard = props => {
   const [user] = useContext(UserContext);
-  const localUser = JSON.parse(localStorage.user);
-
+  const localUser = JSON.parse(user)
+  
   const [guides] = useContext(GuidesContext);
-  console.log('Dahboard: user=', user);
+  console.log('Dahboard: user=', localUser);
   console.log('Dashboard: guides=', guides);
-
-  const [myHowTo, setMyHowTo] = useState(guides);
-
-  // if(user.user_id===guides.id)
-
 
 
   if (guides == undefined) {
@@ -33,7 +28,7 @@ const Dashboard = props => {
               size="small"
               avatar={true}
             />
-            <h2 className="user-nameeee">{user.username}</h2>
+            <h2 className="user-nameeee">{localUser.username}</h2>
           </Table.Cell>
         </Table.Row>
         <div className="badges">
@@ -42,13 +37,13 @@ const Dashboard = props => {
         <Table.Row>
           <Table.Cell className="search-div" textAlign="left">
             <span className="find-how-to">Find a How-to</span>
-            {/* </Table.Cell>
-       <Table.Cell collapsing={true} textAlign='left'> */}
+            </Table.Cell>
+       <Table.Cell collapsing={true} textAlign='left'>
             <SearchField history={props.history} />
           </Table.Cell>
-          {/* <Table.Cell collapsing={true} textAlign="right">
-            // {/* <Link to="/">Upgrade Account</Link> */}
-          {/* </Table.Cell> */}
+          <Table.Cell collapsing={true} textAlign="right">
+            <Link to="/">Upgrade Account</Link>
+          </Table.Cell>
         </Table.Row>
 
         <Table.Row>
@@ -69,14 +64,14 @@ const Dashboard = props => {
             <Table.Row>
               <Table.Cell>
                 {guides.map(guide => {
-                  if (guide.username == user.username) {
+                  if (guide.username == localUser.username) {
                     return <HowToCard guide={guide} type={"account"} />;
                   }
                 })}
               </Table.Cell>
               <Table.Cell>
                 {guides.map(guide => {
-                  if (guide.username == user.username) {
+                  if (guide.username == localUser.username) {
                     return <HowToCard guide={guide} type={"account"} />;
                   }
                 })}
