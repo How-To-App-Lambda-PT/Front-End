@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Segment, Header, Card, Container, Embed, Button } from "semantic-ui-react";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Redirect } from 'react-router-dom';
+import { UserContext } from '../../contexts/index';
 
 const style = {
   h1: {
@@ -19,15 +19,17 @@ const style = {
   }
 };
 
+
 const HowToGuide = props => {
-  let id = localStorage.getItem("guideId");
-  console.log(props.match.params.id, props.name)
+  let id = props.match.params.id;
+  
   const [guide, setGuide] = useState();
+
+  const [user] = useContext(UserContext)
 
   useEffect(() => {
     axiosWithAuth("get", `https://bw-how-to.herokuapp.com/guides/${id}`)
       .then(res => {
-        console.log('HowTo:', res.data)
         setGuide(res.data[0])
       })
       .catch(err => console.log("HowToGuide: useEffect: GET:", err));
@@ -38,9 +40,9 @@ const HowToGuide = props => {
   }
 
   const stepArr = () => {
-    let arr = [];
+    let arr =[]
     for (let key in guide) {
-      if (key.toString().includes("step")) {
+      if (key.toString().includes("step") && guide[key] !== null && guide[key] !== '') {
         arr.push(key);
       }
     }
@@ -74,6 +76,15 @@ const HowToGuide = props => {
     )
   };
 
+  const deleteHowTo = () => {
+    axiosWithAuth(
+      "delete",
+      `https://bw-how-to.herokuapp.com/guides/${guide.id}`
+    )
+      .then(props.history.push(`/userpagenewsfeed`))
+      .catch(err => console.log(err))
+  };
+
   return (
     <Segment style={{ padding: 0, width: '80%', maxWidth: '900px', margin: '50px auto' }}>
       <Container>
@@ -92,7 +103,23 @@ const HowToGuide = props => {
         <Card.Group itemsPerRow={1}>{steps}</Card.Group>
       </Container>
       <Container>{videoPlayer()}</Container>
-      <Button onClick={() => props.history.push('/editGuide')}>Edit Guide</Button>
+      <Button
+        onClick={() => props.history.push(`/editGuide/${id}`)}
+        disabled={JSON.parse(user).type !== 'creator'}
+      >
+        Edit Guide
+      </Button>
+      <Button
+        onClick={deleteHowTo}
+        disabled={JSON.parse(user).type !== 'creator'}
+      >
+        Delete Guide
+      </Button>
+      <Button
+        onClick={() => props.history.push('/userpagenewsfeed')}
+      >
+        Return to Newsfeed
+      </Button>
     </Segment>
   );
 };

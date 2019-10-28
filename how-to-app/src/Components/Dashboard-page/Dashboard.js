@@ -10,14 +10,14 @@ const Dashboard = props => {
   const localUser = JSON.parse(localStorage.user);
 
   const [guides] = useContext(GuidesContext);
-  console.log(user);
-  console.log(guides);
+  console.log('Dahboard: user=', user);
+  console.log('Dashboard: guides=', guides);
 
   const [myHowTo, setMyHowTo] = useState(guides);
 
   // if(user.user_id===guides.id)
 
-  console.log(guides);
+
 
   if (guides == undefined) {
     return <h2>loading...</h2>;
