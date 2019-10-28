@@ -10,6 +10,6 @@
   ],
   "routes": [
     { "src": "/(.*)", "dest": "how-to-app/$1" },
-    { "src": "^/usepagenewsfeed", "dest": "/userpagenewsfeed" },
+    { "src": "^/usepagenewsfeed", "dest": "/userpagenewsfeed" }
   ]
 }
