@@ -1,5 +1,4 @@
 .create-cont {
-  margin: 25%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -7,6 +6,19 @@
 }
 
 .img-hanger {
-  max-width: 100%;
-  height: auto;
+  object-fit: cover;
+  width: 720px;
+  height: 978px;
+}
+
+.how-to {
+  font-weight: bold;
+  font-size: 60px;
+  position: absolute;
+  width: 596px;
+  height: 75px;
+  left: 782px;
+  top: 151px;
+
+  color: #79C473;
 }
