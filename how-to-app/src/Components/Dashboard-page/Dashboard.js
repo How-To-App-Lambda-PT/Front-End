@@ -18,7 +18,7 @@ const Dashboard = props => {
     return <h2>loading...</h2>;
   } else {
     return (
-      <Table>
+      <Table style={{width: '80%'}}>
         <Table.Row>
           <Table.Cell collapsing={true}>
             <Image
@@ -38,10 +38,10 @@ const Dashboard = props => {
           <Table.Cell className="search-div" textAlign="left">
             <span className="find-how-to">Find a How-to</span>
             </Table.Cell>
-       <Table.Cell collapsing={true} textAlign='left'>
+       <Table.Cell collapsing={false} textAlign='left'>
             <SearchField history={props.history} />
           </Table.Cell>
-          <Table.Cell collapsing={true} textAlign="right">
+          <Table.Cell collapsing={false} textAlign="right">
             <Link to="/">Upgrade Account</Link>
           </Table.Cell>
         </Table.Row>
@@ -65,7 +65,7 @@ const Dashboard = props => {
               <Table.Cell>
                 {guides.map(guide => {
                   if (guide.username == localUser.username) {
-                    return <HowToCard guide={guide} type={"account"} />;
+                    return <HowToCard key={guide.id} guide={guide} type={"account"} />;
                   }
                 })}
               </Table.Cell>

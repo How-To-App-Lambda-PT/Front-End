@@ -10,8 +10,10 @@ import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
 const UserPageNewsfeed = props => {    
   
-    const [guides, setGuides] = useContext(GuidesContext);
-    const [user] = useContext(UserContext);
+  const [guides, setGuides] = useContext(GuidesContext);
+  const [user] = useContext(UserContext);
+  const localUser = JSON.parse(user)
+
 
   useEffect(() => {
     axiosWithAuth('get', `https://bw-how-to.herokuapp.com/guides`)
@@ -33,7 +35,7 @@ const UserPageNewsfeed = props => {
 
               <Table.Header>
                   <Table.HeaderCell className='tables'></Table.HeaderCell>
-                  <Table.HeaderCell className='tables welcome'><h1>Welcome {user.username}</h1></Table.HeaderCell>
+                  <Table.HeaderCell className='tables welcome'><h1>Welcome {localUser.username}</h1></Table.HeaderCell>
               </Table.Header>
 
               <Table.Body>

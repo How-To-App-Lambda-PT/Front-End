@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Image, Table, Button } from "semantic-ui-react";
+import { Image, Table, Button, TableBody } from "semantic-ui-react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 // import { UserContext } from "../../contexts/index";
@@ -26,65 +26,68 @@ const HowToCard = props => {
   if (props.type == "newsfeed") {
     return (
       <Table className="newsfeed_how_to_card" onClick={linkHandler}>
-        <Table.Row>
-          <Table.Cell collapsing={true}>
-            <Image
-              textalign="left"
-              size="medium"
-              src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-            />
-          </Table.Cell>
-
-          <Table.Cell verticalAlign="bottom">
-            <p>
-              <span className="green">Tried it:</span> <span> 0</span>
-            </p>
-            <p>
-              <span className="green">Category:</span>{" "}
-              <span> {guide.type}</span>
-            </p>
-            <p>
-              <span className="green">Difficulty:</span> <span> Easy</span>
-            </p>
-            <p>
-              <span className="green">Creator:</span>{" "}
-              <span> {guide.username}</span>
-            </p>
-          </Table.Cell>
-
-          <Table.Cell verticalAlign="top" textAlign="left">
-            <Table.Row>
-              <Table.Cell>
-                <h2 className="green">{guide.title}</h2>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell textAlign="center">
-                <div>
-                  <h2>
-                    <StarRatingComponent
-                      name="rate1"
-                      editing={false}
-                      starCount={5}
-                      value={4.7}
-                    />
-                  </h2>
-                </div>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Cell verticalAlign='center'>
-              <Button
-                className="try-it"
-                as={Link}
-                to={`/guides/${guide.id}`}
-                style={{
-                  color: 'white',
-                  backgroundColor: 'green'
-                }}
-              >Try It</Button>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell collapsing={true}>
+              <Image
+                textalign="left"
+                size="medium"
+                src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
+              />
             </Table.Cell>
-          </Table.Cell>
-        </Table.Row>
+
+            <Table.Cell verticalAlign="bottom">
+              <p>
+                <span className="green">Tried it:</span> <span> 0</span>
+              </p>
+              <p>
+                <span className="green">Category:</span>{" "}
+                <span> {guide.type}</span>
+              </p>
+              <p>
+                <span className="green">Difficulty:</span> <span> Easy</span>
+              </p>
+              <p>
+                <span className="green">Creator:</span>{" "}
+                <span> {guide.username}</span>
+              </p>
+            </Table.Cell>
+
+            <Table.Cell verticalAlign="top" textAlign="left">
+              <Table.Row>
+                <Table.Cell>
+                  <h2 className="green">{guide.title}</h2>
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell textAlign="center">
+                  <div>
+                    <h2>
+                      <StarRatingComponent
+                        name="rate1"
+                        editing={false}
+                        starCount={5}
+                        value={4.7}
+                      />
+                    </h2>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+              <Table.Cell>
+                <Button
+                  className="try-it"
+                  as={Link}
+                  to={`/guides/${guide.id}`}
+                  style={{
+                    color: 'white',
+                    backgroundColor: 'green',
+                    marginLeft: '0 auto'
+                  }}
+                >Try It</Button>
+              </Table.Cell>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </Table>
     );
   } else if (props.type == "searchResult") {
@@ -127,7 +130,7 @@ const HowToCard = props => {
         <Table.Row>
           <Table.Cell collapsing={true}>
             <Image
-              textAlign="left"
+              textalign="left"
               size="small"
               src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
             />

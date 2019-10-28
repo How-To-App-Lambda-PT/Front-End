@@ -96,7 +96,7 @@ const FormikCreateAccount = withFormik({
       .then(res => {
         console.log('handleSubmit: POST: res=', res, 'values=', values)
         localStorage.setItem("token", res.data.token)
-        localStorage.setItem("user", res.data)
+        localStorage.setItem("user", JSON.stringify(res.data))
         values.history.push('/userpagenewsfeed')
       })
       .catch(err => console.log(err, values));

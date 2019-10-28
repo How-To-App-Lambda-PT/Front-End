@@ -359,90 +359,93 @@
   box-shadow   : 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
 
-  border: none;
+  border     : none;
   font-family: Roboto;
-  font-style: normal;
+  font-style : normal;
   font-weight: bold;
-  font-size: 24px;
+  font-size  : 24px;
   line-height: 28px;
-  text-align: center;
+  text-align : center;
   margin-left: 8%;
-  color: #ffffff;
+  color      : #ffffff;
 }
 
 .myacc-div {
   margin-left: 10%;
-  width: 100%;
+  width      : 100%;
 }
 
 .searchfield {
-  width: 272px;
-  height: 35px;
-  background: #ffffff;
-  margin-left: 1%;
-  box-sizing: border-box;
+  width        : 272px;
+  height       : 35px;
+  background   : #ffffff;
+  margin-left  : 1%;
+  box-sizing   : border-box;
   border-radius: 4px;
 }
+
 .search-div {
-  display: flex;
+  display      : flex;
   margin-bottom: 1%;
-  float: left;
-  margin-left: 8%;
+  float        : left;
+  margin-left  : 8%;
 }
+
 .find-how-to {
   font-family: Roboto;
-  font-style: normal;
+  font-style : normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size  : 24px;
   line-height: 28px;
 }
 
 .account-avi {
-  width: 136px;
+  width : 136px;
   height: 136px;
   margin: 5% 0 0% 5%;
 }
+
 .dashboard-table {
-  display: flex;
-  margin-top: 2%;
+  display        : flex;
+  margin-top     : 2%;
   justify-content: center;
-  margin-left: 8%;
-  /* width: 100%; */
-  border-bottom: 3px solid #000000;
-  transform: rotate(0.23deg);
+  margin-left    : 8%;
+  /* width       : 100%; */
+  border-bottom  : 3px solid #000000;
+  transform      : rotate(0.23deg);
 }
+
 .my-how-to {
   font-family: Roboto;
-  font-style: normal;
+  font-style : normal;
   font-weight: normal;
-  font-size: 36px;
+  font-size  : 36px;
   line-height: 42px;
-  float: left;
+  float      : left;
 }
 
 .myacc-favorite {
   font-family: Roboto;
-  font-style: normal;
+  font-style : normal;
   font-weight: normal;
-  font-size: 36px;
+  font-size  : 36px;
   line-height: 42px;
 }
 
 .badges {
-  width: 1257px;
-  height: 156px;
-  border: 1px solid #000000;
-  margin: 0;
-  margin-left: 8%;
+  width        : 1257px;
+  height       : 156px;
+  border       : 1px solid #000000;
+  margin       : 0;
+  margin-left  : 8%;
   margin-bottom: 1%;
 }
 
 .badges-txt {
-  margin: 2% 0 0 2%;
+  margin     : 2% 0 0 2%;
   font-family: Roboto;
-  font-style: normal;
+  font-style : normal;
   font-weight: normal;
-  font-size: 24px;
+  font-size  : 24px;
   line-height: 28px;
 }
-
