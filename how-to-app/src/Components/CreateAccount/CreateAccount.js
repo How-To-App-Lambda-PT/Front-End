@@ -8,7 +8,10 @@ import './CreateAccount.css'
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 // import '../../App.css';
 
-function CreateAccount({errors, touched, values,}, props) {
+function CreateAccount({ errors, touched, values, }, props) {
+  
+  console.log('CreateAccount', props)
+
   return (
 
     <Container className="super-cont">
@@ -23,7 +26,7 @@ function CreateAccount({errors, touched, values,}, props) {
           <div className="email-cont">
             <div className='email-text'>
               {/* {touched.email && errors.email && <p>{errors.email}</p>}  */}
-                <Label>Email</Label>
+                <Label>Username</Label>
             </div>
           <div>
             <Field className="email-text" type="email" name="username" />
@@ -65,7 +68,7 @@ function CreateAccount({errors, touched, values,}, props) {
 
 const FormikCreateAccount = withFormik({
   mapPropsToValues({ username, password, verifyPassword, values, props }) {
-    console.log(values);
+    console.log('FormikCreateAccount', values);
     return {
       username: username || "",
       password: password || "",
@@ -83,7 +86,7 @@ const FormikCreateAccount = withFormik({
       .required()
   }),
 
-  handleSubmit: (values) => {
+  handleSubmit: (values, props) => {
     const body = {
       "username": values.username,
       "password": values.password, 
@@ -96,7 +99,7 @@ const FormikCreateAccount = withFormik({
         // const jwtToken = res.data.token,
         localStorage.setItem("token", res.data.token)
         localStorage.setItem("user", res.data.id)
-        // props.history.push("/userpagenewsfeed")
+        props.history.push("/userpagenewsfeed")
       })
       .catch(err => console.log(err, values));
   },
