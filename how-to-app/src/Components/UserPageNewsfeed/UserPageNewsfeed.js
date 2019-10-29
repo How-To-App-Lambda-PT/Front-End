@@ -13,6 +13,7 @@ const UserPageNewsfeed = props => {
   const [guides, setGuides] = useContext(GuidesContext);
   const [user] = useContext(UserContext);
   const localUser = JSON.parse(user)
+  console.log("localUser=", localUser)
 
 
   useEffect(() => {
