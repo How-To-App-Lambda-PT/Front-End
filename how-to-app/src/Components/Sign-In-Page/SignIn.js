@@ -39,7 +39,7 @@ const SignIn = props => {
                   console.log("SignIn: POST: res.data=", res.data);
                   localStorage.setItem("token", res.data.token);
                   localStorage.setItem("user", JSON.stringify(res.data));
-                  setUser(res.data);
+                  setUser(JSON.stringify(res.data));
                   setSubmitting(false);
                   resetForm();
                   props.history.push("/userpagenewsfeed");
