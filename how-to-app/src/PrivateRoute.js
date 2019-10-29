@@ -6,10 +6,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = localStorage.token
   console.log('PrivetRoute: token=', token)
   return (
-    // <Route
-    //   {...rest} render={props => token ? <Component {...props} {...rest} /> 
-    //   : <Redirect to='/' />} />
-    <Route {...rest} render={props => <Component {...props} {...rest} />} />
+    <Route
+      {...rest} render={props => token ? <Component {...props} {...rest} /> 
+      : <Redirect to='/' />} />
   )
 }
 
